@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lumétria · AI Attribution for Shopify UGC</title>
+    <!-- Calendly CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <!-- Advanced fonts: SF Pro Display & Dark Grotesque -->
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -320,6 +322,22 @@
 
         .dark a:hover {
             color: #1746EA !important;
+        }
+
+        /* Calendly custom styling */
+        .calendly-inline-widget {
+            min-width: 320px;
+            height: 700px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .dark .calendly-inline-widget {
+            filter: invert(0.05) hue-rotate(180deg);
+        }
+        
+        .calendly-inline-widget iframe {
+            border-radius: 12px;
         }
     </style>
 </head>
@@ -774,7 +792,7 @@
                         </div>
                     </div>
 
-                    <!-- Calendly Embed (Premium Styled) -->
+                    <!-- Calendly Embed (Real Integration) -->
                     <div class="relative mt-8 lg:mt-0">
                         <div class="absolute -inset-4 bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] rounded-[2rem] blur-2xl opacity-20"></div>
                         <div class="relative glass-premium rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15">
@@ -783,66 +801,25 @@
                                 <p class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80">Select a time that works for you</p>
                             </div>
                             
-                            <!-- Calendly Placeholder with Premium Styling -->
-                            <div class="bg-white dark:bg-black rounded-xl lg:rounded-2xl p-4 lg:p-6 border border-[#1746EA]/10 dark:border-white/15">
-                                <!-- Date Picker Mockup -->
-                                <div class="grid grid-cols-7 gap-1 mb-4 lg:mb-6">
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">S</div>
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">M</div>
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">T</div>
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">W</div>
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">T</div>
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">F</div>
-                                    <div class="text-center text-xs text-[#4A4A4A] dark:text-white/70">S</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">23</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">24</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">25</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">26</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">27</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">28</div>
-                                    <div class="text-center text-sm text-[#4A4A4A] dark:text-white/70">29</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">30</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">31</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">1</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">2</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">3</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">4</div>
-                                    <div class="text-center text-sm text-[#1A1A1A] dark:text-white">5</div>
-                                </div>
-
-                                <!-- Time Slots -->
-                                <div class="space-y-2 mb-4 lg:mb-6">
-                                    <div class="glass-premium rounded-lg lg:rounded-xl p-2 lg:p-3 flex justify-between items-center cursor-pointer hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all border border-[#1746EA]/10 dark:border-white/15">
-                                        <span class="text-sm lg:text-base text-[#1A1A1A] dark:text-white">9:00 AM</span>
-                                        <span class="text-xs text-[#1746EA]">Available</span>
-                                    </div>
-                                    <div class="glass-premium rounded-lg lg:rounded-xl p-2 lg:p-3 flex justify-between items-center cursor-pointer hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all border border-[#1746EA]/10 dark:border-white/15">
-                                        <span class="text-sm lg:text-base text-[#1A1A1A] dark:text-white">10:30 AM</span>
-                                        <span class="text-xs text-[#1746EA]">Available</span>
-                                    </div>
-                                    <div class="glass-premium rounded-lg lg:rounded-xl p-2 lg:p-3 flex justify-between items-center cursor-pointer hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all border border-[#1746EA]/10 dark:border-white/15">
-                                        <span class="text-sm lg:text-base text-[#1A1A1A] dark:text-white">1:00 PM</span>
-                                        <span class="text-xs text-[#1746EA]">Available</span>
-                                    </div>
-                                    <div class="glass-premium rounded-lg lg:rounded-xl p-2 lg:p-3 flex justify-between items-center opacity-50 border border-[#1746EA]/10 dark:border-white/15">
-                                        <span class="text-sm lg:text-base text-[#1A1A1A] dark:text-white">2:30 PM</span>
-                                        <span class="text-xs text-[#4A4A4A] dark:text-white/70">Booked</span>
-                                    </div>
-                                    <div class="glass-premium rounded-lg lg:rounded-xl p-2 lg:p-3 flex justify-between items-center cursor-pointer hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all border border-[#1746EA]/10 dark:border-white/15">
-                                        <span class="text-sm lg:text-base text-[#1A1A1A] dark:text-white">4:00 PM</span>
-                                        <span class="text-xs text-[#1746EA]">Available</span>
-                                    </div>
-                                </div>
-
-                                <!-- Confirm Button -->
-                                <button class="w-full bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] text-white py-3 lg:py-4 rounded-lg lg:rounded-xl font-bold text-base lg:text-lg hover:shadow-lg hover:shadow-[#1746EA]/25 transition-all">
-                                    Confirm Demo Time
-                                </button>
-
-                                <p class="text-center text-xs text-[#4A4A4A] dark:text-white/70 mt-4">
-                                    Free consultation · No credit card required
-                                </p>
+                            <!-- Real Calendly Inline Widget -->
+                            <div class="calendly-inline-widget rounded-xl overflow-hidden" 
+                                 data-url="https://calendly.com/lumetria-demo/30min?primary_color=1746EA"
+                                 style="min-width:320px; height:700px;">
                             </div>
+                            
+                            <!-- Fallback for when Calendly doesn't load -->
+                            <div class="text-center mt-4 hidden" id="calendly-fallback">
+                                <p class="text-xs text-[#4A4A4A] dark:text-white/70 mb-3">Can't load calendar? Book directly:</p>
+                                <a href="https://calendly.com/lumetria-demo/30min" 
+                                   target="_blank" 
+                                   class="inline-block bg-[#1746EA] hover:bg-[#2F5DFF] text-white px-6 py-3 rounded-xl text-sm font-bold transition-all">
+                                    Open Booking Page →
+                                </a>
+                            </div>
+
+                            <p class="text-center text-xs text-[#4A4A4A] dark:text-white/70 mt-4">
+                                Free consultation · No credit card required
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -899,7 +876,10 @@
         </div>
     </footer>
 
-    <!-- GSAP Animations -->
+    <!-- Calendly Widget JS -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    
+    <!-- GSAP Animations and Custom Scripts -->
     <script>
         // Theme Toggle Function
         function toggleTheme() {
@@ -914,6 +894,15 @@
                 html.classList.add('dark');
                 icon.textContent = 'dark_mode';
             }
+            
+            // Refresh Calendly iframe to match theme
+            setTimeout(() => {
+                const calendlyWidget = document.querySelector('.calendly-inline-widget');
+                if (calendlyWidget && calendlyWidget.innerHTML === '') {
+                    const url = calendlyWidget.getAttribute('data-url');
+                    calendlyWidget.setAttribute('data-url', url);
+                }
+            }, 100);
         }
 
         // Mobile Menu Toggle
@@ -973,6 +962,16 @@
                 menu.classList.add('hidden');
             }
         });
+
+        // Calendly fallback handler
+        setTimeout(function() {
+            const calendlyWidget = document.querySelector('.calendly-inline-widget');
+            const fallback = document.getElementById('calendly-fallback');
+            
+            if (calendlyWidget && calendlyWidget.children.length === 0) {
+                fallback.classList.remove('hidden');
+            }
+        }, 5000);
     </script>
     <style>
         /* Mobile Responsiveness */
@@ -994,6 +993,9 @@
                 left: 1rem;
                 right: 1rem;
                 max-width: calc(100% - 2rem);
+            }
+            .calendly-inline-widget {
+                height: 600px !important;
             }
         }
 
@@ -1068,6 +1070,11 @@
         /* Disabled/booked slots */
         .dark .opacity-50 .text-\[\#4A4A4A\] {
             color: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        /* Calendly dark mode adjustment */
+        .dark .calendly-inline-widget {
+            filter: invert(0.02) hue-rotate(180deg);
         }
     </style>
 </body>
