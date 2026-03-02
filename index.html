@@ -18,13 +18,42 @@
             box-sizing: border-box;
         }
 
+        /* Light mode (default) */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f8ff;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --border-color: rgba(0, 102, 255, 0.1);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --navbar-bg: rgba(255, 255, 255, 0.9);
+            --footer-bg: #ffffff;
+            --cta-bg: #0a1929;
+            --cta-text: #ffffff;
+        }
+
+        /* Dark mode */
+        body.dark {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --border-color: rgba(255, 255, 255, 0.15);
+            --card-bg: #000000;
+            --navbar-bg: rgba(0, 0, 0, 0.9);
+            --footer-bg: #000000;
+            --cta-bg: #000000;
+            --cta-text: #ffffff;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: #ffffff;
-            color: #1A1A1A;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
             line-height: 1.5;
             overflow-x: hidden;
             width: 100%;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -41,6 +70,26 @@
             line-height: 1.2;
         }
 
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--navbar-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color: #0066FF;
+        }
+
         /* Navigation */
         .navbar {
             position: fixed;
@@ -49,10 +98,10 @@
             transform: translateX(-50%);
             width: calc(100% - 32px);
             max-width: 1200px;
-            background: rgba(255, 255, 255, 0.9);
+            background: var(--navbar-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            border: 1px solid var(--border-color);
             border-radius: 100px;
             padding: 12px 20px;
             z-index: 1000;
@@ -70,6 +119,11 @@
         .logo img {
             height: 32px;
             width: auto;
+            filter: var(--logo-filter);
+        }
+
+        body.dark .logo img {
+            filter: brightness(0) invert(1);
         }
 
         .nav-links {
@@ -94,8 +148,8 @@
             top: 88px;
             left: 16px;
             right: 16px;
-            background: white;
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 24px;
             z-index: 999;
@@ -114,26 +168,26 @@
             background: none;
             border: none;
             font-size: 16px;
-            color: #1A1A1A;
+            color: var(--text-primary);
             text-decoration: none;
         }
 
         .mobile-menu .divider {
             height: 1px;
-            background: rgba(0, 102, 255, 0.1);
+            background: var(--border-color);
             margin: 12px 0;
         }
 
-        /* Live Visitor Counter */
+        /* Live Visitor Counter - exactly like Taap.it */
         .visitor-counter {
             position: fixed;
             bottom: 16px;
             left: 16px;
             right: 16px;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--navbar-bg);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 102, 255, 0.2);
+            border: 1px solid var(--border-color);
             border-radius: 100px;
             padding: 12px 20px;
             z-index: 1000;
@@ -175,13 +229,13 @@
 
         .visitor-label {
             font-size: 12px;
-            color: #4A4A4A;
+            color: var(--text-secondary);
         }
 
         .visitor-count {
             font-size: 20px;
             font-weight: 700;
-            color: #1A1A1A;
+            color: var(--text-primary);
         }
 
         .visitor-avatars {
@@ -193,7 +247,7 @@
             width: 28px;
             height: 28px;
             border-radius: 50%;
-            border: 2px solid white;
+            border: 2px solid var(--bg-primary);
             margin-left: -8px;
             background: linear-gradient(135deg, #0066FF, #2F5DFF);
         }
@@ -201,7 +255,7 @@
         /* Hero Section */
         .hero {
             padding: 120px 0 60px;
-            background: white;
+            background: var(--bg-primary);
             text-align: center;
         }
 
@@ -209,18 +263,19 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 102, 255, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 100px;
             padding: 8px 16px;
             margin-bottom: 24px;
             font-size: 14px;
-            color: #4A4A4A;
+            color: var(--text-secondary);
         }
 
         .hero h1 {
             font-size: 40px;
             margin-bottom: 20px;
+            color: var(--text-primary);
         }
 
         .hero h1 span {
@@ -229,7 +284,7 @@
 
         .hero p {
             font-size: 18px;
-            color: #4A4A4A;
+            color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto 32px;
         }
@@ -259,8 +314,8 @@
         }
 
         .btn-secondary {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 102, 255, 0.2);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 100px;
             padding: 16px 32px;
             font-size: 16px;
@@ -268,6 +323,7 @@
             cursor: pointer;
             transition: background 0.3s;
             width: 100%;
+            color: var(--text-primary);
         }
 
         .btn-secondary:hover {
@@ -289,9 +345,9 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            border: 2px solid white;
+            border: 2px solid var(--bg-primary);
             margin-left: -8px;
-            background: #e0e0e0;
+            background: var(--text-secondary);
         }
 
         .trust-avatar:first-child {
@@ -314,19 +370,19 @@
 
         .trust-text strong {
             display: block;
-            color: #1A1A1A;
+            color: var(--text-primary);
         }
 
         .trust-text span {
             font-size: 14px;
-            color: #4A4A4A;
+            color: var(--text-secondary);
         }
 
         /* Dashboard Mockup */
         .dashboard-mockup {
             margin-top: 40px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 16px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -357,8 +413,8 @@
         }
 
         .mockup-card {
-            background: rgba(255, 255, 255, 0.5);
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 16px;
         }
@@ -387,7 +443,7 @@
         /* Pain Points Section */
         .pain-points {
             padding: 60px 0;
-            background: white;
+            background: var(--bg-primary);
         }
 
         .section-header {
@@ -398,10 +454,11 @@
         .section-header h2 {
             font-size: 32px;
             margin-bottom: 16px;
+            color: var(--text-primary);
         }
 
         .section-header p {
-            color: #4A4A4A;
+            color: var(--text-secondary);
             font-size: 16px;
         }
 
@@ -412,8 +469,8 @@
         }
 
         .pain-card {
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 24px;
         }
@@ -431,10 +488,11 @@
         .pain-card h3 {
             font-size: 20px;
             margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
         .pain-card p {
-            color: #4A4A4A;
+            color: var(--text-secondary);
             font-size: 14px;
             margin-bottom: 16px;
         }
@@ -442,13 +500,14 @@
         .pain-tag {
             font-size: 12px;
             font-family: monospace;
-            color: rgba(0, 102, 255, 0.5);
+            color: #0066FF;
+            opacity: 0.7;
         }
 
         /* Features Section */
         .features {
             padding: 60px 0;
-            background: #F5F8FF;
+            background: var(--bg-secondary);
         }
 
         .features-grid {
@@ -459,8 +518,8 @@
         }
 
         .feature-card {
-            background: white;
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
             padding: 24px;
         }
@@ -480,17 +539,18 @@
         .feature-card h3 {
             font-size: 18px;
             margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
         .feature-card p {
-            color: #4A4A4A;
+            color: var(--text-secondary);
             font-size: 14px;
         }
 
         /* Stats Section */
         .stats {
             padding: 60px 0;
-            background: white;
+            background: var(--bg-primary);
         }
 
         .stats-grid {
@@ -502,8 +562,8 @@
         .stat-card {
             text-align: center;
             padding: 24px;
-            background: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 24px;
         }
 
@@ -517,7 +577,7 @@
         .stat-label {
             font-size: 12px;
             font-weight: 600;
-            color: #4A4A4A;
+            color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -525,8 +585,8 @@
         /* CTA Section */
         .cta {
             padding: 60px 0;
-            background: #0A1929;
-            color: white;
+            background: var(--cta-bg);
+            color: var(--cta-text);
         }
 
         .cta-grid {
@@ -538,6 +598,7 @@
         .cta h2 {
             font-size: 36px;
             margin-bottom: 20px;
+            color: var(--cta-text);
         }
 
         .cta p {
@@ -573,6 +634,7 @@
         .benefit-text h4 {
             font-weight: 600;
             margin-bottom: 4px;
+            color: white;
         }
 
         .benefit-text p {
@@ -611,8 +673,8 @@
         /* Footer */
         .footer {
             padding: 40px 0;
-            background: white;
-            border-top: 1px solid rgba(0, 102, 255, 0.1);
+            background: var(--footer-bg);
+            border-top: 1px solid var(--border-color);
         }
 
         .footer-grid {
@@ -624,6 +686,11 @@
         .footer-logo img {
             height: 28px;
             width: auto;
+            filter: var(--logo-filter);
+        }
+
+        body.dark .footer-logo img {
+            filter: brightness(0) invert(1);
         }
 
         .footer-links {
@@ -635,6 +702,7 @@
         .footer-column h4 {
             font-size: 14px;
             margin-bottom: 16px;
+            color: var(--text-primary);
         }
 
         .footer-column ul {
@@ -646,9 +714,10 @@
         }
 
         .footer-column a {
-            color: #4A4A4A;
+            color: var(--text-secondary);
             text-decoration: none;
             font-size: 14px;
+            transition: color 0.3s;
         }
 
         .footer-column a:hover {
@@ -658,13 +727,13 @@
         .footer-bottom {
             margin-top: 32px;
             padding-top: 32px;
-            border-top: 1px solid rgba(0, 102, 255, 0.1);
+            border-top: 1px solid var(--border-color);
             text-align: center;
             font-size: 12px;
-            color: #4A4A4A;
+            color: var(--text-secondary);
         }
 
-        /* Tablet Styles (768px and up) */
+        /* Tablet Styles */
         @media (min-width: 768px) {
             .container {
                 padding: 0 32px;
@@ -709,7 +778,7 @@
             }
         }
 
-        /* Desktop Styles (1024px and up) */
+        /* Desktop Styles */
         @media (min-width: 1024px) {
             .navbar {
                 padding: 12px 32px;
@@ -721,9 +790,10 @@
             }
 
             .nav-links a {
-                color: #4A4A4A;
+                color: var(--text-secondary);
                 text-decoration: none;
                 font-size: 14px;
+                transition: color 0.3s;
             }
 
             .nav-links a:hover {
@@ -739,8 +809,14 @@
             .nav-buttons .signin {
                 background: none;
                 border: none;
-                color: #4A4A4A;
+                color: var(--text-secondary);
                 cursor: pointer;
+                font-size: 14px;
+                transition: color 0.3s;
+            }
+
+            .nav-buttons .signin:hover {
+                color: #0066FF;
             }
 
             .nav-buttons .demo {
@@ -751,6 +827,11 @@
                 padding: 8px 20px;
                 font-weight: 600;
                 cursor: pointer;
+                transition: background 0.3s;
+            }
+
+            .nav-buttons .demo:hover {
+                background: #2F5DFF;
             }
 
             .mobile-menu-btn {
@@ -818,6 +899,11 @@
                 left: 32px;
                 right: auto;
             }
+
+            .theme-toggle {
+                top: 24px;
+                right: 24px;
+            }
         }
 
         /* Large Desktop */
@@ -829,6 +915,11 @@
     </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <span class="material-symbols-outlined" id="themeIcon">dark_mode</span>
+    </div>
+
     <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
@@ -860,7 +951,7 @@
         <button style="background: #0066FF; color: white; border-radius: 100px; text-align: center; margin-top: 8px;">Book Demo →</button>
     </div>
 
-    <!-- Live Visitor Counter -->
+    <!-- Live Visitor Counter (exactly like Taap.it) -->
     <div class="visitor-counter">
         <div class="pulse-dot"></div>
         <div class="visitor-info">
@@ -875,7 +966,7 @@
     </div>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section - matching Taap.it structure -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -920,20 +1011,20 @@
                             <div class="mockup-dot red"></div>
                             <div class="mockup-dot yellow"></div>
                             <div class="mockup-dot green"></div>
-                            <div style="margin-left: auto; font-size: 12px; color: #4A4A4A;">LIVE ATTRIBUTION DASHBOARD</div>
+                            <div style="margin-left: auto; font-size: 12px; color: var(--text-secondary);">LIVE ATTRIBUTION DASHBOARD</div>
                         </div>
                         <div class="mockup-content">
                             <div class="mockup-card">
                                 <div style="display: flex; justify-content: space-between; margin-bottom: 16px;">
-                                    <span style="color: #4A4A4A;">Revenue by Creator</span>
+                                    <span style="color: var(--text-secondary);">Revenue by Creator</span>
                                     <span style="color: #0066FF;">+34%</span>
                                 </div>
                                 <div class="mockup-row">
                                     <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #ff6b6b, #feca57); border-radius: 50%;"></div>
                                     <div style="flex: 1;">
                                         <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                                            <span>@beautycreator</span>
-                                            <span style="font-weight: 600;">$124.5k</span>
+                                            <span style="color: var(--text-primary);">@beautycreator</span>
+                                            <span style="font-weight: 600; color: var(--text-primary);">$124.5k</span>
                                         </div>
                                         <div class="mockup-bar">
                                             <div class="mockup-bar-fill" style="width: 75%;"></div>
@@ -944,8 +1035,8 @@
                                     <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #48c9b0, #5dade2); border-radius: 50%;"></div>
                                     <div style="flex: 1;">
                                         <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
-                                            <span>@fashionista</span>
-                                            <span style="font-weight: 600;">$89.2k</span>
+                                            <span style="color: var(--text-primary);">@fashionista</span>
+                                            <span style="font-weight: 600; color: var(--text-primary);">$89.2k</span>
                                         </div>
                                         <div class="mockup-bar">
                                             <div class="mockup-bar-fill" style="width: 50%;"></div>
@@ -956,11 +1047,11 @@
                             <div class="mockup-card">
                                 <div style="text-align: center; margin-bottom: 16px;">
                                     <div style="font-size: 36px; font-weight: 800; color: #0066FF;">78%</div>
-                                    <div style="color: #4A4A4A;">Attribution Accuracy</div>
+                                    <div style="color: var(--text-secondary);">Attribution Accuracy</div>
                                 </div>
-                                <div style="text-align: center; padding-top: 16px; border-top: 1px solid rgba(0,102,255,0.1);">
-                                    <div style="font-size: 24px; font-weight: 800;">5m</div>
-                                    <div style="color: #4A4A4A;">Setup Time</div>
+                                <div style="text-align: center; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                                    <div style="font-size: 24px; font-weight: 800; color: var(--text-primary);">5m</div>
+                                    <div style="color: var(--text-secondary);">Setup Time</div>
                                 </div>
                             </div>
                         </div>
@@ -969,7 +1060,7 @@
             </div>
         </section>
 
-        <!-- Pain Points Section: "Do you recognize yourself?" -->
+        <!-- Pain Points Section: "Do you recognize yourself?" - exactly like Taap.it -->
         <section class="pain-points">
             <div class="container">
                 <div class="section-header">
@@ -1013,7 +1104,7 @@
             </div>
         </section>
 
-        <!-- Features Section: How Lumétria Solves Each Problem -->
+        <!-- Features Section -->
         <section class="features">
             <div class="container">
                 <div class="section-header">
@@ -1125,7 +1216,7 @@
             <div class="footer-grid">
                 <div class="footer-logo">
                     <img src="lumetria_logo_1-removebg-preview.png" alt="Lumétria" onerror="this.src='https://via.placeholder.com/100x32?text=Lumétria'">
-                    <p style="margin-top: 16px; color: #4A4A4A; font-size: 14px;">AI attribution for Shopify brands running UGC ads.</p>
+                    <p style="margin-top: 16px; color: var(--text-secondary); font-size: 14px;">AI attribution for Shopify brands running UGC ads.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -1163,6 +1254,20 @@
     <!-- Scripts -->
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     <script>
+        // Theme Toggle
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            
+            body.classList.toggle('dark');
+            
+            if (body.classList.contains('dark')) {
+                icon.textContent = 'light_mode';
+            } else {
+                icon.textContent = 'dark_mode';
+            }
+        }
+
         // Mobile Menu Toggle
         function toggleMobileMenu() {
             document.getElementById('mobileMenu').classList.toggle('active');
@@ -1183,7 +1288,7 @@
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
             const menuBtn = document.querySelector('.mobile-menu-btn');
-            if (!menuBtn.contains(event.target) && !menu.contains(event.target) && menu.classList.contains('active')) {
+            if (menu && menuBtn && !menuBtn.contains(event.target) && !menu.contains(event.target) && menu.classList.contains('active')) {
                 menu.classList.remove('active');
             }
         });
