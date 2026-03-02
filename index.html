@@ -455,6 +455,9 @@
             color: var(--text-secondary);
             margin-bottom: 16px;
             text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .traffic-item {
             display: flex;
@@ -462,7 +465,12 @@
             justify-content: space-between;
             margin-bottom: 12px;
         }
-        .traffic-item .label { color: var(--text-primary); }
+        .traffic-item .label {
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
         .traffic-item .value {
             font-weight: 600;
             color: var(--accent);
@@ -477,32 +485,60 @@
             height: 100%;
             background: var(--accent);
             border-radius: 4px;
+            width: 0%;
         }
 
-        /* Sales by product table (like Taap.it) */
-        .sales-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 16px;
+        /* Journey Mockup (What's driving purchases) */
+        .journey-mockup {
+            max-width: 800px;
+            margin: 0 auto;
         }
-        .sales-table th {
-            text-align: left;
-            font-size: 12px;
-            color: var(--text-secondary);
-            font-weight: 500;
-            padding-bottom: 12px;
+        .journey-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            background: var(--card-bg);
+            padding: 16px;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
         }
-        .sales-table td {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--border-color);
-            color: var(--text-primary);
+        .journey-step.highlight {
+            border: 2px solid var(--accent);
         }
-        .sales-table td:last-child {
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,102,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--accent);
+            font-weight: 700;
+        }
+        .step-number.highlight {
+            background: var(--accent);
+            color: white;
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-title {
             font-weight: 600;
         }
-        .trend-up { color: #00C8B0; }
-        .trend-down { color: #ff5f56; }
+        .step-subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+        .step-value {
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .arrow-down {
+            text-align: center;
+            color: var(--text-secondary);
+            margin: 4px 0;
+        }
 
         /* Features */
         .features {
@@ -1000,7 +1036,7 @@
             </div>
         </section>
 
-        <!-- Traffic Analysis (like Taap.it) -->
+        <!-- Traffic Analysis (animated) -->
         <section class="traffic-section">
             <div class="container">
                 <div class="section-header">
@@ -1008,52 +1044,141 @@
                     <p>Understand exactly where your traffic comes from by channel, campaign, page, and device.</p>
                 </div>
                 <div class="traffic-grid">
+                    <!-- Sources Card -->
                     <div class="traffic-card">
-                        <div class="traffic-header">Sources</div>
-                        <div class="traffic-item"><span class="label">Direct</span><span class="value">421</span></div>
-                        <div class="traffic-bar"><div class="traffic-bar-fill" style="width:80%"></div></div>
-                        <div class="traffic-item"><span class="label">Bing</span><span class="value">124</span></div>
-                        <div class="traffic-bar"><div class="traffic-bar-fill" style="width:60%"></div></div>
-                        <div class="traffic-item"><span class="label">Gemini</span><span class="value">53</span></div>
-                        <div class="traffic-bar"><div class="traffic-bar-fill" style="width:40%"></div></div>
-                        <div class="traffic-item"><span class="label">ChatGPT</span><span class="value">32</span></div>
-                        <div class="traffic-bar"><div class="traffic-bar-fill" style="width:30%"></div></div>
+                        <div class="traffic-header">
+                            <span class="material-symbols-outlined">globe</span> Sources
+                        </div>
+                        <div class="traffic-item">
+                            <span class="label">Direct</span>
+                            <span class="value count" data-target="421">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="80"></div></div>
+                        <div class="traffic-item">
+                            <span class="label">Bing</span>
+                            <span class="value count" data-target="124">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="60"></div></div>
+                        <div class="traffic-item">
+                            <span class="label">Gemini</span>
+                            <span class="value count" data-target="53">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="40"></div></div>
+                        <div class="traffic-item">
+                            <span class="label">ChatGPT</span>
+                            <span class="value count" data-target="32">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="30"></div></div>
                     </div>
+
+                    <!-- Locations Card -->
                     <div class="traffic-card">
-                        <div class="traffic-header">Locations</div>
-                        <div class="traffic-item"><span class="label">France</span><span class="value">568</span></div>
-                        <div class="traffic-item"><span class="label">Italy</span><span class="value">140</span></div>
-                        <div class="traffic-item"><span class="label">Spain</span><span class="value">35</span></div>
-                        <div class="traffic-item"><span class="label">Germany</span><span class="value">1</span></div>
+                        <div class="traffic-header">
+                            <span class="material-symbols-outlined">location_on</span> Locations
+                        </div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;">
+                            <div style="flex: 1; min-width: 120px;">
+                                <div class="traffic-item"><span class="label">🇫🇷 France</span> <span class="value count" data-target="568">0</span></div>
+                                <div class="traffic-item"><span class="label">🇮🇹 Italy</span> <span class="value count" data-target="140">0</span></div>
+                                <div class="traffic-item"><span class="label">🇪🇸 Spain</span> <span class="value count" data-target="35">0</span></div>
+                            </div>
+                            <div style="flex: 1; min-width: 120px;">
+                                <div class="traffic-item"><span class="label">🇩🇪 Germany</span> <span class="value count" data-target="1">0</span></div>
+                                <div class="traffic-item"><span class="label">🇨🇳 China</span> <span class="value count" data-target="1">0</span></div>
+                                <div class="traffic-item"><span class="label">🇿🇦 South Africa</span> <span class="value count" data-target="1">0</span></div>
+                            </div>
+                        </div>
+                        <!-- World map dots -->
+                        <div style="margin-top: 20px; display: flex; gap: 4px; flex-wrap: wrap; justify-content: center;">
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.8;"></div>
+                            <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent); opacity: 0.6;"></div>
+                            <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.9;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); opacity: 0.4;"></div>
+                            <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--accent); opacity: 0.7;"></div>
+                            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.5;"></div>
+                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); opacity: 0.8;"></div>
+                        </div>
                     </div>
+
+                    <!-- Devices Card -->
                     <div class="traffic-card">
-                        <div class="traffic-header">Devices</div>
-                        <div class="traffic-item"><span class="label">Chrome</span><span class="value">568</span></div>
-                        <div class="traffic-item"><span class="label">Safari Mobile</span><span class="value">140</span></div>
-                        <div class="traffic-item"><span class="label">Firefox</span><span class="value">35</span></div>
-                        <div class="traffic-item"><span class="label">Brave</span><span class="value">4</span></div>
+                        <div class="traffic-header">
+                            <span class="material-symbols-outlined">devices</span> Devices
+                        </div>
+                        <div class="traffic-item">
+                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">desktop_windows</span> Chrome</span>
+                            <span class="value count" data-target="568">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="85"></div></div>
+                        <div class="traffic-item">
+                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">phone_iphone</span> Safari Mobile</span>
+                            <span class="value count" data-target="140">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="60"></div></div>
+                        <div class="traffic-item">
+                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">laptop</span> Firefox</span>
+                            <span class="value count" data-target="35">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="30"></div></div>
+                        <div class="traffic-item">
+                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">devices</span> Brave</span>
+                            <span class="value count" data-target="4">0</span>
+                        </div>
+                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="10"></div></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Sales by Product (like Taap.it) -->
+        <!-- What's Driving Purchases? (Customer Journey) -->
         <section class="features" style="background: var(--bg-primary);">
             <div class="container">
                 <div class="section-header">
                     <h2># What's driving purchases?</h2>
-                    <p>See which products and campaigns generate real revenue.</p>
+                    <p>See the exact customer journey from first touch to final sale.</p>
                 </div>
-                <div class="traffic-card" style="max-width:800px; margin:0 auto;">
-                    <table class="sales-table">
-                        <thead><tr><th>Product</th><th>Units sold</th><th>Revenue</th><th>Evolution</th></tr></thead>
-                        <tbody>
-                            <tr><td>Premium Wireless Headphones</td><td>123/234</td><td>$12.0k/$23.0k</td><td class="trend-up">+0.5%</td></tr>
-                            <tr><td>Smart Watch Pro</td><td>112/223</td><td>$11.0k/$22.0k</td><td class="trend-up">+0.6%</td></tr>
-                            <tr><td>Bluetooth Speaker</td><td>101/212</td><td>$10.0k/$21.0k</td><td class="trend-up">+0.7%</td></tr>
-                            <tr><td>USB-C Hub</td><td>90/201</td><td>$9.0k/$20.0k</td><td class="trend-up">+0.8%</td></tr>
-                        </tbody>
-                    </table>
+                <div class="journey-mockup">
+                    <div style="display: flex; flex-direction: column; gap: 12px;">
+                        <!-- Step 1 -->
+                        <div class="journey-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <div class="step-title">Instagram Story Click</div>
+                                <div class="step-subtitle">from @beautycreator · 12:34pm</div>
+                            </div>
+                            <div class="step-value count" data-target="1245">0</div>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <!-- Step 2 -->
+                        <div class="journey-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <div class="step-title">Product Page View</div>
+                                <div class="step-subtitle">Premium Headphones · 12:35pm</div>
+                            </div>
+                            <div class="step-value count" data-target="876">0</div>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <!-- Step 3 -->
+                        <div class="journey-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <div class="step-title">Added to Cart</div>
+                                <div class="step-subtitle">Quantity: 1 · 12:38pm</div>
+                            </div>
+                            <div class="step-value count" data-target="543">0</div>
+                        </div>
+                        <div class="arrow-down">↓</div>
+                        <!-- Step 4 (Purchase) -->
+                        <div class="journey-step highlight">
+                            <div class="step-number highlight">$</div>
+                            <div class="step-content">
+                                <div class="step-title">Purchase Completed</div>
+                                <div class="step-subtitle">Revenue: $89.00 · 12:45pm</div>
+                            </div>
+                            <div class="step-value count" data-target="8900">$0</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1094,15 +1219,15 @@
         <section class="stats">
             <div class="container">
                 <div class="stats-grid">
-                    <div class="stat-card"><div class="stat-number">+34%</div><div class="stat-label">Avg. ROAS Increase</div></div>
-                    <div class="stat-card"><div class="stat-number">78%</div><div class="stat-label">More Attribution Accuracy</div></div>
+                    <div class="stat-card"><div class="stat-number count" data-target="34">0</div><div class="stat-label">Avg. ROAS Increase</div></div>
+                    <div class="stat-card"><div class="stat-number count" data-target="78">0</div><div class="stat-label">Attribution Accuracy</div></div>
                     <div class="stat-card"><div class="stat-number">5-min</div><div class="stat-label">No-Code Setup</div></div>
                     <div class="stat-card"><div class="stat-number">24/7</div><div class="stat-label">Live Data Monitoring</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Pricing (like Taap.it) -->
+        <!-- Pricing -->
         <section class="pricing" id="pricing">
             <div class="container">
                 <div class="section-header">
@@ -1265,9 +1390,52 @@
             }
         });
 
-        // GSAP Scroll Animations
+        // GSAP Scroll Animations with counters and bars
         gsap.registerPlugin(ScrollTrigger);
-        gsap.utils.toArray('.pain-card, .traffic-card, .feature-card, .stat-card, .pricing-card, .faq-item').forEach(el => {
+
+        // Animate counters
+        gsap.utils.toArray('.count').forEach(counter => {
+            const target = parseFloat(counter.getAttribute('data-target'));
+            if (isNaN(target)) return;
+            gsap.fromTo(counter, 
+                { innerText: 0 },
+                {
+                    innerText: target,
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: counter,
+                        start: 'top 80%',
+                    },
+                    modifiers: {
+                        innerText: (value) => {
+                            if (counter.innerText.includes('$')) {
+                                return '$' + Math.round(Number(value)).toLocaleString();
+                            }
+                            return Math.round(Number(value)).toLocaleString();
+                        }
+                    }
+                }
+            );
+        });
+
+        // Animate progress bars
+        gsap.utils.toArray('.traffic-bar-fill').forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            if (!width) return;
+            gsap.to(bar, {
+                width: width + '%',
+                duration: 1.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: bar,
+                    start: 'top 80%',
+                }
+            });
+        });
+
+        // Fade up animations for cards
+        gsap.utils.toArray('.pain-card, .traffic-card, .feature-card, .stat-card, .pricing-card, .faq-item, .journey-step').forEach(el => {
             gsap.from(el, {
                 scrollTrigger: { trigger: el, start: 'top 85%' },
                 y: 30,
