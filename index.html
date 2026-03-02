@@ -6,849 +6,538 @@
     <title>Lumétria · AI Attribution for Shopify UGC</title>
     <!-- Calendly CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <!-- Advanced fonts: SF Pro Display & Dark Grotesque -->
+    <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/sf-pro-display">
-    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-        /* Premium Font Stack */
-        body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
-        }
-        .font-grotesque {
-            font-family: 'Dark Grotesque', 'Inter', sans-serif;
-            letter-spacing: -0.02em;
-        }
+        /* Fonts */
+        body { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, system-ui, sans-serif; }
+        .font-grotesque { font-family: 'Inter', sans-serif; letter-spacing: -0.02em; font-weight: 800; }
         
-        /* Color System */
+        /* Colors */
         :root {
-            --accent-electric: #1746EA;
-            --accent-electric-light: #2F5DFF;
-            --accent-soft: #B7C7FF;
-            --bg-light: #FFFFFF;
-            --text-light: #1A1A1A;
-            --text-light-secondary: #4A4A4A;
+            --navy: #0A1929;
+            --navy-light: #1A2B3E;
+            --electric: #0066FF;
+            --electric-light: #2F5DFF;
+            --electric-soft: #B7C7FF;
         }
 
-        /* Dark mode overrides - Black background with subtle borders */
+        /* Dark mode - Complete override */
         .dark {
-            --bg-light: #000000;
-            --text-light: #FFFFFF;
-            --text-light-secondary: #E0E0E0;
+            --bg-primary: #000000;
+            --bg-secondary: #000000;
+            --text-primary: #FFFFFF;
+            --text-secondary: #E0E0E0;
+            --border-color: rgba(255, 255, 255, 0.15);
         }
 
-        /* Premium Glassmorphism - Light Mode */
-        .glass-premium {
+        /* Force dark mode on all sections */
+        .dark body,
+        .dark main,
+        .dark section,
+        .dark footer,
+        .dark .bg-white,
+        .dark .bg-\[\#0A1929\],
+        .dark .bg-\[\#F5F8FF\],
+        .dark .bg-gradient-to-b {
+            background-color: #000000 !important;
+            background-image: none !important;
+        }
+
+        /* Cards in dark mode */
+        .dark .glass-card {
+            background: #000000 !important;
+            border: 1px solid rgba(255, 255, 255, 0.15) !important;
+            backdrop-filter: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Text colors in dark mode */
+        .dark,
+        .dark p,
+        .dark h1,
+        .dark h2,
+        .dark h3,
+        .dark h4,
+        .dark span:not(.material-symbols-outlined),
+        .dark div:not(.glass-card):not(.bg-gradient-to-r) {
+            color: #FFFFFF !important;
+        }
+
+        .dark .text-\[\#4A4A4A\],
+        .dark .text-\[\#1A1A1A\],
+        .dark .text-gray-600,
+        .dark .text-gray-700,
+        .dark .text-gray-800,
+        .dark .text-gray-900 {
+            color: rgba(255, 255, 255, 0.9) !important;
+        }
+
+        .dark .text-white\/70,
+        .dark .text-white\/60,
+        .dark .text-white\/40 {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        /* Keep accent colors */
+        .dark .text-\[\#0066FF\],
+        .dark .text-\[\#00C8B0\] {
+            color: #0066FF !important;
+        }
+
+        .dark .bg-\[\#0066FF\] {
+            background-color: #0066FF !important;
+        }
+
+        /* Borders in dark mode */
+        .dark .border-\[\#0066FF\]\/10,
+        .dark .border-\[\#0066FF\]\/20,
+        .dark .border-white\/5,
+        .dark .border-white\/10,
+        .dark .border-gray-200,
+        .dark .border-gray-300 {
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* Icons in dark mode */
+        .dark .material-symbols-outlined {
+            color: inherit;
+        }
+        .dark .material-symbols-outlined.text-\[\#0066FF\] {
+            color: #0066FF !important;
+        }
+
+        /* Footer specific */
+        .dark footer,
+        .dark .border-t {
+            border-color: rgba(255, 255, 255, 0.15) !important;
+        }
+
+        /* Calendly dark mode */
+        .dark .calendly-inline-widget {
+            filter: invert(0.02) hue-rotate(180deg);
+        }
+
+        /* Glass card */
+        .glass-card {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(23, 70, 234, 0.1);
-            box-shadow: 0 25px 50px -12px rgba(23, 70, 234, 0.15);
-        }
-        
-        /* Dark Mode Cards - Pure black with subtle border */
-        .dark .glass-premium {
-            background: #000000 !important;
-            backdrop-filter: none;
-            -webkit-backdrop-filter: none;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
-        }
-
-        /* Pain point cards in dark mode */
-        .dark .hover-card {
-            background: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* Feature cards in dark mode */
-        .dark .feature-card {
-            background: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* Numbers/stats cards in dark mode */
-        .dark .stats-card {
-            background: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* Dashboard mockup cards in dark mode */
-        .dark .dashboard-card {
-            background: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* Calendly section cards in dark mode */
-        .dark .calendly-card {
-            background: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        /* Hover effect for dark mode cards */
-        .dark .hover-card:hover,
-        .dark .feature-card:hover,
-        .dark .stats-card:hover {
-            border-color: rgba(23, 70, 234, 0.5);
+            border: 1px solid rgba(0, 102, 255, 0.1);
             transition: all 0.3s ease;
         }
 
-        /* Custom Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .animate-float {
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .animate-pulse-glow {
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        /* Visitor Counter Pulse */
-        .visitor-pulse {
-            position: relative;
-        }
+        /* Visitor Pulse */
+        .visitor-pulse { position: relative; }
         .visitor-pulse::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(23, 70, 234, 0.3);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 102, 255, 0.3);
             border-radius: 50%;
-            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+            animation: pulse-ring 2s infinite;
         }
-
         @keyframes pulse-ring {
             0% { transform: scale(0.8); opacity: 0.5; }
             100% { transform: scale(1.5); opacity: 0; }
         }
 
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        .dark ::-webkit-scrollbar-track {
-            background: #1A1A1A;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-electric);
-            border-radius: 4px;
-        }
-
         /* Grid Background */
         .grid-bg {
-            background-image: 
-                linear-gradient(rgba(23, 70, 234, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(23, 70, 234, 0.03) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(0,102,255,0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0,102,255,0.03) 1px, transparent 1px);
             background-size: 50px 50px;
         }
-
-        /* Shine Effect */
-        .shine-effect {
-            position: relative;
-            overflow: hidden;
-        }
-        .shine-effect::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(23, 70, 234, 0.05) 50%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            animation: shine 6s infinite;
+        .dark .grid-bg {
+            opacity: 0.1;
         }
 
-        @keyframes shine {
-            0% { transform: translateX(-100%) rotate(30deg); }
-            20%, 100% { transform: translateX(100%) rotate(30deg); }
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .fixed.bottom-6.left-6 { left: 1rem; right: 1rem; max-width: calc(100% - 2rem); }
+            .calendly-inline-widget { height: 600px !important; }
         }
 
-        /* Hover Card Effect */
-        .hover-card {
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .hover-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(23, 70, 234, 0.2);
-        }
+        /* Logo */
+        .logo-img { height: 32px; width: auto; }
+        .dark .logo-img { filter: brightness(0) invert(1); }
+        @media (max-width: 640px) { .logo-img { height: 28px; } }
 
-        /* Dark mode hover effect */
-        .dark .hover-card:hover {
-            box-shadow: 0 20px 40px -15px rgba(23, 70, 234, 0.3);
-            border-color: rgba(23, 70, 234, 0.5) !important;
-        }
-
-        /* Theme Toggle Button */
-        .theme-toggle {
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-        }
-        .theme-toggle:hover {
-            background: rgba(23, 70, 234, 0.1);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu {
-            transition: transform 0.3s ease-in-out;
-        }
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-
-        /* Hero section - white background */
-        .hero-white {
-            background: white;
-        }
-        .dark .hero-white {
-            background: black;
-        }
-
-        /* Dark mode text contrast */
-        .dark p, 
-        .dark span:not(.material-symbols-outlined), 
-        .dark div:not(.glass-premium):not(.bg-gradient-to-r) {
-            color: rgba(255, 255, 255, 0.95) !important;
-        }
-        
-        .dark .text-[#4A4A4A] {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-        
-        .dark .text-[#1A1A1A] {
-            color: white !important;
-        }
-        
-        .dark .glass-premium p,
-        .dark .glass-premium span,
-        .dark .glass-premium div {
-            color: rgba(255, 255, 255, 0.95) !important;
-        }
-
-        /* Ensure icons keep their color in dark mode */
-        .dark .material-symbols-outlined.text-[#1746EA] {
-            color: #1746EA !important;
-        }
-
-        .dark .material-symbols-outlined.text-red-500 {
-            color: #ef4444 !important;
-        }
-
-        .dark .material-symbols-outlined.text-orange-500 {
-            color: #f97316 !important;
-        }
-
-        .dark .material-symbols-outlined.text-blue-500 {
-            color: #3b82f6 !important;
-        }
-
-        .dark .material-symbols-outlined.text-purple-500 {
-            color: #a855f7 !important;
-        }
-
-        /* Stats numbers in dark mode */
-        .dark .text-4xl.font-black.text-\[#1746EA\] {
-            color: #1746EA !important;
-        }
-
-        /* Border colors for dark mode */
-        .dark .border-\[\#1746EA\]\/10 {
-            border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        .dark .border-\[\#1746EA\]\/20 {
-            border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        .dark .border-white\/5 {
-            border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        .dark .border-\[\#1746EA\] {
-            border-color: rgba(23, 70, 234, 0.5) !important;
-        }
-
-        /* Time slot cards in dark mode */
-        .dark .glass-premium.rounded-xl {
-            background: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-
-        .dark .glass-premium.rounded-xl:hover {
-            border-color: rgba(23, 70, 234, 0.5) !important;
-        }
-
-        /* Calendly inner card */
-        .dark .bg-white {
-            background-color: #000000 !important;
-            border: 1px solid rgba(255, 255, 255, 0.15) !important;
-        }
-
-        /* Footer links in dark mode */
-        .dark .text-\[\#4A4A4A\] {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        .dark a:hover {
-            color: #1746EA !important;
-        }
-
-        /* Calendly custom styling */
-        .calendly-inline-widget {
-            min-width: 320px;
-            height: 700px;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        
-        .dark .calendly-inline-widget {
-            filter: invert(0.05) hue-rotate(180deg);
-        }
-        
-        .calendly-inline-widget iframe {
-            border-radius: 12px;
-        }
-
-        /* Logo styling */
-        .logo-image {
-            height: 32px;
-            width: auto;
-            object-fit: contain;
-        }
-        
-        @media (max-width: 640px) {
-            .logo-image {
-                height: 28px;
-            }
-        }
-        
-        .footer-logo {
-            height: 28px;
-            width: auto;
-            object-fit: contain;
-        }
-        
-        /* Dark mode logo filter */
-        .dark .logo-image,
-        .dark .footer-logo {
-            filter: brightness(0) invert(1);
+        /* Smooth transitions */
+        * {
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
         }
     </style>
 </head>
 <body class="bg-white text-[#1A1A1A] dark:bg-black dark:text-white antialiased overflow-x-hidden transition-colors duration-300">
     <!-- Theme Toggle -->
     <div class="fixed top-24 right-6 z-50">
-        <button onclick="toggleTheme()" class="theme-toggle glass-premium rounded-full p-3">
-            <span class="material-symbols-outlined text-[#1746EA] dark:text-white">
-                light_mode
-            </span>
+        <button onclick="toggleTheme()" class="theme-toggle glass-card rounded-full p-3">
+            <span class="material-symbols-outlined text-[#0066FF] dark:text-white">light_mode</span>
         </button>
     </div>
 
-    <!-- Live Visitor Counter Widget (Fixed) -->
+    <!-- Live Visitor Counter (Fixed) -->
     <div class="fixed bottom-6 left-6 z-50">
-        <div class="glass-premium rounded-2xl px-5 py-3 flex items-center gap-4 border border-[#1746EA]/20 dark:border-white/15">
+        <div class="glass-card rounded-2xl px-5 py-3 flex items-center gap-4 border border-[#0066FF]/20 dark:border-white/15">
             <div class="relative">
-                <div class="w-3 h-3 bg-[#1746EA] rounded-full visitor-pulse"></div>
+                <div class="w-3 h-3 bg-[#0066FF] rounded-full visitor-pulse"></div>
             </div>
             <div>
-                <div class="text-sm font-medium text-[#4A4A4A] dark:text-white/85">LIVE VISITORS</div>
+                <div class="text-sm font-medium text-[#4A4A4A] dark:text-white/80">LIVE VISITORS</div>
                 <div class="text-2xl font-bold text-[#1A1A1A] dark:text-white flex items-baseline gap-1">
                     <span id="visitor-count" class="tabular-nums">247</span>
-                    <span class="text-sm text-[#4A4A4A] dark:text-white/70">viewing</span>
+                    <span class="text-sm text-[#4A4A4A] dark:text-white/60">viewing</span>
                 </div>
             </div>
             <div class="flex -space-x-2 ml-2">
-                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#1746EA] to-[#2F5DFF] border-2 border-white dark:border-black"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#0066FF] to-[#2F5DFF] border-2 border-white dark:border-black"></div>
                 <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#2F5DFF] to-[#B7C7FF] border-2 border-white dark:border-black"></div>
-                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#B7C7FF] to-[#1746EA] border-2 border-white dark:border-black"></div>
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#B7C7FF] to-[#0066FF] border-2 border-white dark:border-black"></div>
             </div>
         </div>
     </div>
 
     <!-- Navigation -->
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-6xl">
-        <div class="glass-premium rounded-2xl px-4 sm:px-8 py-4 flex items-center justify-between">
-            <!-- Logo with image -->
-            <a href="/" class="flex items-center gap-2">
-                <img src="lumetria_logo_1-removebg-preview.png" 
-                     alt="Lumétria" 
-                     class="logo-image"
-                     onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="hidden items-center gap-2" style="display: none;">
-                    <div class="w-8 h-8 bg-gradient-to-br from-[#1746EA] to-[#2F5DFF] rounded-lg flex items-center justify-center">
-                        <span class="material-symbols-outlined text-white text-lg">analytics</span>
-                    </div>
-                    <span class="text-xl font-bold bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] bg-clip-text text-transparent">Lumétria</span>
-                </div>
+        <div class="glass-card rounded-2xl px-4 sm:px-8 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="/" class="flex items-center">
+                <img src="lumetria_logo_1-removebg-preview.png" alt="Lumétria" class="logo-img">
             </a>
 
-            <!-- Desktop Nav Links -->
+            <!-- Desktop Nav -->
             <div class="hidden md:flex items-center gap-8">
-                <a href="#product" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium">Product</a>
-                <a href="#solutions" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium">Solutions</a>
-                <a href="#pricing" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium">Pricing</a>
-                <a href="#resources" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium">Resources</a>
+                <a href="#product" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] text-sm font-medium">Product</a>
+                <a href="#solutions" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] text-sm font-medium">Solutions</a>
+                <a href="#pricing" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] text-sm font-medium">Pricing</a>
+                <a href="#resources" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] text-sm font-medium">Resources</a>
             </div>
 
-            <!-- Desktop CTA Buttons -->
+            <!-- Desktop CTA -->
             <div class="hidden md:flex items-center gap-4">
-                <button class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium px-4 py-2">
-                    Sign In
-                </button>
-                <button class="bg-[#1746EA] hover:bg-[#2F5DFF] text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-lg shadow-[#1746EA]/25 hover:shadow-xl hover:shadow-[#1746EA]/40">
-                    Book Demo →
-                </button>
+                <button class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] text-sm font-medium px-4 py-2">Sign In</button>
+                <button class="bg-[#0066FF] hover:bg-[#2F5DFF] text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg shadow-[#0066FF]/25">Book Demo →</button>
             </div>
 
             <!-- Mobile Menu Button -->
-            <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg hover:bg-[#1746EA]/10 transition-colors">
-                <span class="material-symbols-outlined text-[#1746EA] dark:text-white">menu</span>
+            <button onclick="toggleMobileMenu()" class="md:hidden p-2">
+                <span class="material-symbols-outlined text-[#0066FF] dark:text-white">menu</span>
             </button>
         </div>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-premium rounded-2xl p-4">
+        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card rounded-2xl p-4">
             <div class="flex flex-col space-y-4">
-                <a href="#product" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium py-2">Product</a>
-                <a href="#solutions" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium py-2">Solutions</a>
-                <a href="#pricing" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium py-2">Pricing</a>
-                <a href="#resources" class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium py-2">Resources</a>
-                <div class="border-t border-[#1746EA]/10 dark:border-white/15 my-2"></div>
-                <button class="text-[#4A4A4A] dark:text-white/85 hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors text-sm font-medium py-2 text-left">
-                    Sign In
-                </button>
-                <button class="bg-[#1746EA] hover:bg-[#2F5DFF] text-white px-6 py-3 rounded-xl text-sm font-bold transition-all duration-300">
-                    Book Demo →
-                </button>
+                <a href="#product" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] py-2">Product</a>
+                <a href="#solutions" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] py-2">Solutions</a>
+                <a href="#pricing" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] py-2">Pricing</a>
+                <a href="#resources" class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] py-2">Resources</a>
+                <div class="border-t border-[#0066FF]/10 dark:border-white/15 my-2"></div>
+                <button class="text-[#4A4A4A] dark:text-white/80 hover:text-[#0066FF] py-2 text-left">Sign In</button>
+                <button class="bg-[#0066FF] text-white px-6 py-3 rounded-xl font-bold">Book Demo →</button>
             </div>
         </div>
     </nav>
 
     <main class="relative">
-        <!-- Grid Background Overlay -->
+        <!-- Grid Background -->
         <div class="fixed inset-0 grid-bg opacity-30 pointer-events-none"></div>
 
-        <!-- Hero Section - Pure White Background -->
+        <!-- HERO SECTION -->
         <section class="relative min-h-screen flex items-center pt-32 overflow-hidden bg-white dark:bg-black">
-            <!-- Subtle gradient accents only -->
-            <div class="absolute inset-0">
-                <div class="absolute top-20 left-10 w-72 h-72 bg-[#1746EA]/5 rounded-full blur-[128px]"></div>
-                <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#2F5DFF]/5 rounded-full blur-[128px]"></div>
-            </div>
-
-            <div class="container mx-auto px-6 relative z-10">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    <!-- Left Content -->
-                    <div class="space-y-6 lg:space-y-8">
-                        <!-- Live Social Proof -->
-                        <div class="inline-flex items-center gap-4 glass-premium rounded-full px-4 py-2 border border-[#1746EA]/20 dark:border-white/15">
-                            <div class="flex items-center gap-2">
-                                <div class="w-2 h-2 bg-[#1746EA] rounded-full animate-pulse"></div>
-                                <span class="text-sm text-[#4A4A4A] dark:text-white/85">420+ brands active</span>
-                            </div>
-                            <div class="w-px h-4 bg-[#1746EA]/20 dark:bg-white/15"></div>
-                            <div class="flex items-center gap-2">
-                                <span class="material-symbols-outlined text-sm text-[#1746EA]">bolt</span>
-                                <span class="text-sm text-[#4A4A4A] dark:text-white/85">Tracking $124M+ in revenue</span>
-                            </div>
-                        </div>
-
-                        <!-- Main Headline -->
-                        <h1 class="font-grotesque text-5xl sm:text-6xl lg:text-8xl font-black leading-[1.1] tracking-tight">
-                            <span class="text-[#1A1A1A] dark:text-white">
-                                Stop Guessing
-                            </span>
-                            <br />
-                            <span class="bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] bg-clip-text text-transparent">
-                                Which Creators
-                            </span>
-                            <br />
-                            <span class="text-[#1A1A1A] dark:text-white">Actually Drive Revenue</span>
-                        </h1>
-
-                        <p class="text-lg lg:text-xl text-[#4A4A4A] dark:text-white/85 leading-relaxed max-w-lg">
-                            The first AI-powered attribution platform built for Shopify brands running UGC. Know exactly which creator, campaign, and content delivers ROI — in real-time.
-                        </p>
-
-                        <!-- CTA Group -->
-                        <div class="flex flex-col sm:flex-row gap-4 pt-4">
-                            <button class="group bg-[#1746EA] hover:bg-[#2F5DFF] text-white px-8 lg:px-10 py-4 lg:py-5 rounded-2xl text-base lg:text-lg font-bold transition-all duration-300 shadow-2xl shadow-[#1746EA]/25 flex items-center justify-center gap-3">
-                                Book a Strategy Demo
-                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
-                            </button>
-                            <button class="glass-premium hover:bg-[#1746EA]/5 text-[#1A1A1A] dark:text-white px-8 lg:px-10 py-4 lg:py-5 rounded-2xl text-base lg:text-lg font-bold transition-all duration-300 flex items-center justify-center gap-3">
-                                <span class="material-symbols-outlined">play_circle</span>
-                                Watch 2-min Demo
-                            </button>
-                        </div>
-
-                        <!-- Trust Indicators -->
-                        <div class="flex items-center gap-6 lg:gap-8 pt-6 lg:pt-8">
-                            <div class="flex -space-x-3 lg:-space-x-4">
-                                <img src="https://i.pravatar.cc/100?img=1" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white dark:border-black">
-                                <img src="https://i.pravatar.cc/100?img=2" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white dark:border-black">
-                                <img src="https://i.pravatar.cc/100?img=3" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white dark:border-black">
-                                <img src="https://i.pravatar.cc/100?img=4" class="w-10 h-10 lg:w-12 lg:h-12 rounded-full border-2 border-white dark:border-black">
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gradient-to-br from-[#1746EA] to-[#2F5DFF] border-2 border-white dark:border-black flex items-center justify-center text-xs lg:text-sm font-bold text-white">450+</div>
-                            </div>
-                            <div class="text-sm">
-                                <div class="font-bold text-[#1A1A1A] dark:text-white">Leading DTC Brands</div>
-                                <div class="text-[#4A4A4A] dark:text-white/70">Trust Lumétria</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Content - Dashboard Mockup -->
-                    <div class="relative group mt-12 lg:mt-0">
-                        <!-- Animated Glow -->
-                        <div class="absolute -inset-4 bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] rounded-[2rem] blur-3xl opacity-20 group-hover:opacity-30 transition-opacity"></div>
-                        
-                        <!-- Dashboard Card -->
-                        <div class="relative glass-premium rounded-3xl p-4 border border-[#1746EA]/10 dark:border-white/15 overflow-hidden">
-                            <div class="absolute inset-0 shine-effect"></div>
-                            
-                            <!-- Dashboard Header -->
-                            <div class="flex items-center justify-between mb-4 px-4">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                                </div>
-                                <div class="text-xs text-[#4A4A4A] dark:text-white/70">LIVE ATTRIBUTION DASHBOARD</div>
-                            </div>
-
-                            <!-- Dashboard Content -->
-                            <div class="grid grid-cols-3 gap-4 p-4">
-                                <div class="col-span-2">
-                                    <div class="glass-premium rounded-2xl p-4 mb-4">
-                                        <div class="flex justify-between items-center mb-4">
-                                            <span class="text-sm text-[#4A4A4A] dark:text-white/70">Revenue by Creator</span>
-                                            <span class="text-xs text-[#1746EA]">+34% vs last month</span>
-                                        </div>
-                                        <div class="space-y-3">
-                                            <div class="flex items-center gap-2">
-                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-orange-500"></div>
-                                                <div class="flex-1">
-                                                    <div class="flex justify-between text-sm mb-1">
-                                                        <span class="text-[#1A1A1A] dark:text-white">@beautycreator</span>
-                                                        <span class="font-bold text-[#1A1A1A] dark:text-white">$124.5k</span>
-                                                    </div>
-                                                    <div class="h-2 bg-[#1746EA]/10 dark:bg-white/10 rounded-full overflow-hidden">
-                                                        <div class="h-full w-3/4 bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] rounded-full"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500"></div>
-                                                <div class="flex-1">
-                                                    <div class="flex justify-between text-sm mb-1">
-                                                        <span class="text-[#1A1A1A] dark:text-white">@fashionista</span>
-                                                        <span class="font-bold text-[#1A1A1A] dark:text-white">$89.2k</span>
-                                                    </div>
-                                                    <div class="h-2 bg-[#1746EA]/10 dark:bg-white/10 rounded-full overflow-hidden">
-                                                        <div class="h-full w-1/2 bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] rounded-full"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="flex items-center gap-2">
-                                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-teal-500"></div>
-                                                <div class="flex-1">
-                                                    <div class="flex justify-between text-sm mb-1">
-                                                        <span class="text-[#1A1A1A] dark:text-white">@lifestyleco</span>
-                                                        <span class="font-bold text-[#1A1A1A] dark:text-white">$67.8k</span>
-                                                    </div>
-                                                    <div class="h-2 bg-[#1746EA]/10 dark:bg-white/10 rounded-full overflow-hidden">
-                                                        <div class="h-full w-2/5 bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] rounded-full"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="glass-premium rounded-2xl p-4">
-                                        <div class="text-center">
-                                            <div class="text-3xl font-black text-[#1746EA]">78%</div>
-                                            <div class="text-xs text-[#4A4A4A] dark:text-white/70 mt-1">Attribution Accuracy</div>
-                                        </div>
-                                        <div class="mt-4 pt-4 border-t border-[#1746EA]/10 dark:border-white/15">
-                                            <div class="text-center">
-                                                <div class="text-2xl font-black text-[#1A1A1A] dark:text-white">5m</div>
-                                                <div class="text-xs text-[#4A4A4A] dark:text-white/70">Setup Time</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Pain Points Section -->
-        <section class="py-16 lg:py-32 relative bg-white dark:bg-black">
             <div class="container mx-auto px-6">
-                <div class="text-center max-w-3xl mx-auto mb-12 lg:mb-20">
-                    <span class="text-[#1746EA] font-bold text-sm uppercase tracking-widest mb-4 block">THE ATTRIBUTION PROBLEM</span>
-                    <h2 class="font-grotesque text-4xl lg:text-6xl font-black mb-4 lg:mb-6 text-[#1A1A1A] dark:text-white">
-                        Do You Recognize<br />Yourself?
-                    </h2>
-                    <p class="text-lg lg:text-xl text-[#4A4A4A] dark:text-white/85">
-                        If you're running UGC ads without Lumétria, you're leaving money on the table.
+                <div class="max-w-4xl mx-auto text-center">
+                    <!-- Badge with live indicator -->
+                    <div class="inline-flex items-center gap-3 glass-card rounded-full px-4 py-2 mb-8 border border-[#0066FF]/20 dark:border-white/15">
+                        <span class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0066FF] opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#0066FF]"></span>
+                        </span>
+                        <span class="text-sm text-[#4A4A4A] dark:text-white/80">New: Shopify Direct Attribution 2.0</span>
+                    </div>
+
+                    <!-- Main Headline -->
+                    <h1 class="font-grotesque text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] tracking-tight mb-6">
+                        <span class="text-[#1A1A1A] dark:text-white">Stop Guessing Which</span><br>
+                        <span class="text-[#0066FF]">UGC Creators</span><br>
+                        <span class="text-[#1A1A1A] dark:text-white">Actually Drive Revenue</span>
+                    </h1>
+
+                    <!-- Subheadline -->
+                    <p class="text-xl text-[#4A4A4A] dark:text-white/80 max-w-2xl mx-auto mb-10">
+                        The first AI-powered attribution platform built for Shopify brands running UGC. Know exactly which creator, campaign, and content delivers ROI — in real-time.
                     </p>
-                </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Pain Point 1 -->
-                    <div class="group hover-card glass-premium rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50">
-                        <div class="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-red-50 dark:bg-transparent text-red-500 flex items-center justify-center mb-4 lg:mb-6 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">visibility_off</span>
-                        </div>
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Unknown ROI</h3>
-                        <p class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            You have no idea which creators actually drive sales and which are just vanity metrics.
-                        </p>
-                        <div class="mt-4 lg:mt-6 text-red-500/50 dark:text-red-500/70 text-xs lg:text-sm font-mono">#1 pain point</div>
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                        <button class="group bg-[#0066FF] hover:bg-[#2F5DFF] text-white px-10 py-5 rounded-2xl text-lg font-bold shadow-2xl shadow-[#0066FF]/25 flex items-center justify-center gap-3">
+                            Book a Strategy Demo
+                            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </button>
+                        <button class="glass-card hover:bg-[#0066FF]/5 text-[#1A1A1A] dark:text-white px-10 py-5 rounded-2xl text-lg font-bold flex items-center justify-center gap-3">
+                            <span class="material-symbols-outlined">play_circle</span>
+                            Watch 2-min Demo
+                        </button>
                     </div>
 
-                    <!-- Pain Point 2 -->
-                    <div class="group hover-card glass-premium rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50">
-                        <div class="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-orange-50 dark:bg-transparent text-orange-500 flex items-center justify-center mb-4 lg:mb-6 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">payments</span>
+                    <!-- Trust Indicators -->
+                    <div class="flex items-center justify-center gap-6">
+                        <div class="flex -space-x-4">
+                            <img src="https://i.pravatar.cc/100?img=1" class="w-12 h-12 rounded-full border-2 border-white dark:border-black">
+                            <img src="https://i.pravatar.cc/100?img=2" class="w-12 h-12 rounded-full border-2 border-white dark:border-black">
+                            <img src="https://i.pravatar.cc/100?img=3" class="w-12 h-12 rounded-full border-2 border-white dark:border-black">
+                            <img src="https://i.pravatar.cc/100?img=4" class="w-12 h-12 rounded-full border-2 border-white dark:border-black">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#0066FF] to-[#2F5DFF] border-2 border-white dark:border-black flex items-center justify-center text-sm font-bold text-white">450+</div>
                         </div>
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Wasted Budget</h3>
-                        <p class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            Thousands invested in content that looks great but fails to convert.
-                        </p>
-                        <div class="mt-4 lg:mt-6 text-orange-500/50 dark:text-orange-500/70 text-xs lg:text-sm font-mono">$ wasted daily</div>
-                    </div>
-
-                    <!-- Pain Point 3 -->
-                    <div class="group hover-card glass-premium rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50">
-                        <div class="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-blue-50 dark:bg-transparent text-blue-500 flex items-center justify-center mb-4 lg:mb-6 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">data_exploration</span>
+                        <div class="text-sm text-left">
+                            <div class="font-bold text-[#1A1A1A] dark:text-white">Leading DTC Brands</div>
+                            <div class="text-[#4A4A4A] dark:text-white/60">tracking revenue live</div>
                         </div>
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Hours of Data</h3>
-                        <p class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            Drowning in spreadsheets and broken tracking links that never match up.
-                        </p>
-                        <div class="mt-4 lg:mt-6 text-blue-500/50 dark:text-blue-500/70 text-xs lg:text-sm font-mono">12+ hrs/week</div>
-                    </div>
-
-                    <!-- Pain Point 4 -->
-                    <div class="group hover-card glass-premium rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50">
-                        <div class="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl bg-purple-50 dark:bg-transparent text-purple-500 flex items-center justify-center mb-4 lg:mb-6 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">timeline</span>
-                        </div>
-                        <h3 class="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Zero Visibility</h3>
-                        <p class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            No clear picture of the customer journey from first view to checkout.
-                        </p>
-                        <div class="mt-4 lg:mt-6 text-purple-500/50 dark:text-purple-500/70 text-xs lg:text-sm font-mono">multi-touch blind</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- How Lumétria Solves It -->
-        <section class="py-16 lg:py-32 relative bg-gradient-to-b from-white to-[#F5F8FF] dark:from-black dark:to-black">
+        <!-- SECTION 1: Which creators actually bring in customers? -->
+        <section class="py-24 bg-white dark:bg-black border-y border-[#0066FF]/10 dark:border-white/15">
             <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 lg:mb-32">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
-                        <span class="text-[#1746EA] font-bold text-sm uppercase tracking-widest mb-4 block">The Solution</span>
-                        <h2 class="font-grotesque text-4xl lg:text-6xl font-black mb-4 lg:mb-6 text-[#1A1A1A] dark:text-white">
-                            Finally, AI That<br />Connects Creators<br />to Cash
+                        <h2 class="font-grotesque text-4xl lg:text-5xl font-black mb-6 text-[#1A1A1A] dark:text-white">
+                            <span class="text-[#0066FF]">#</span> Which creators actually bring in customers?
                         </h2>
-                        <p class="text-lg lg:text-xl text-[#4A4A4A] dark:text-white/85 leading-relaxed">
-                            Lumétria automates the heavy lifting of UGC attribution. Set up in 5 minutes and get granular ROI data on every creator, campaign, and piece of content.
+                        <p class="text-lg text-[#4A4A4A] dark:text-white/80 leading-relaxed">
+                            Stop guessing which UGC creators are driving real traffic. Lumétria automatically tracks every click, view, and engagement from your creator content, showing you exactly which partnerships are worth scaling.
                         </p>
                     </div>
-                    <div class="grid grid-cols-2 gap-4 lg:gap-6">
-                        <div class="glass-premium rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-center border border-[#1746EA]/10 dark:border-white/15">
-                            <div class="text-3xl lg:text-4xl font-black text-[#1746EA] mb-1 lg:mb-2">+34%</div>
-                            <div class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">Avg. ROAS Increase</div>
-                        </div>
-                        <div class="glass-premium rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-center border border-[#1746EA]/10 dark:border-white/15">
-                            <div class="text-3xl lg:text-4xl font-black text-[#1746EA] mb-1 lg:mb-2">99.9%</div>
-                            <div class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">Attribution Accuracy</div>
-                        </div>
-                        <div class="glass-premium rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-center border border-[#1746EA]/10 dark:border-white/15">
-                            <div class="text-3xl lg:text-4xl font-black text-[#1746EA] mb-1 lg:mb-2">5m</div>
-                            <div class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">No-Code Setup</div>
-                        </div>
-                        <div class="glass-premium rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-center border border-[#1746EA]/10 dark:border-white/15">
-                            <div class="text-3xl lg:text-4xl font-black text-[#1746EA] mb-1 lg:mb-2">24/7</div>
-                            <div class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">Real-time Data</div>
+                    <div class="glass-card rounded-3xl p-6 border border-[#0066FF]/10 dark:border-white/15">
+                        <div class="text-sm font-medium text-[#4A4A4A] dark:text-white/60 mb-4">TOP PERFORMING CREATORS</div>
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-pink-500 to-orange-500"></div>
+                                    <span class="font-medium text-[#1A1A1A] dark:text-white">@beautycreator</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-[#1A1A1A] dark:text-white">12.4k visits</div>
+                                    <div class="text-xs text-[#00C8B0]">4.2% conv.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-500"></div>
+                                    <span class="font-medium text-[#1A1A1A] dark:text-white">@fashionista</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-[#1A1A1A] dark:text-white">8.9k visits</div>
+                                    <div class="text-xs text-[#00C8B0]">3.8% conv.</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-green-500 to-teal-500"></div>
+                                    <span class="font-medium text-[#1A1A1A] dark:text-white">@lifestyleco</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-[#1A1A1A] dark:text-white">6.7k visits</div>
+                                    <div class="text-xs text-[#00C8B0]">5.1% conv.</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Feature Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                    <div class="glass-premium rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all">
-                        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-[#1746EA]/10 dark:bg-transparent text-[#1746EA] flex items-center justify-center mb-4 lg:mb-6">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">sync_alt</span>
+        <!-- SECTION 2: What's actually driving purchases? -->
+        <section class="py-24 bg-white dark:bg-black">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="glass-card rounded-3xl p-6 border border-[#0066FF]/10 dark:border-white/15">
+                            <div class="text-sm font-medium text-[#4A4A4A] dark:text-white/60 mb-4">CUSTOMER JOURNEY</div>
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-3 p-3 bg-[#0066FF]/5 dark:bg-transparent rounded-xl">
+                                    <span class="material-symbols-outlined text-[#0066FF]">smart_display</span>
+                                    <span class="text-[#1A1A1A] dark:text-white">Instagram Story Click</span>
+                                    <span class="ml-auto text-sm text-[#4A4A4A] dark:text-white/60">12:34pm</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 ml-6 border-l-2 border-[#0066FF]/30 pl-6">
+                                    <span class="material-symbols-outlined text-[#0066FF]">inventory</span>
+                                    <span class="text-[#1A1A1A] dark:text-white">Product Page View</span>
+                                    <span class="ml-auto text-sm text-[#4A4A4A] dark:text-white/60">12:35pm</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 ml-12 border-l-2 border-[#0066FF]/30 pl-6">
+                                    <span class="material-symbols-outlined text-[#0066FF]">shopping_cart</span>
+                                    <span class="text-[#1A1A1A] dark:text-white">Added to Cart</span>
+                                    <span class="ml-auto text-sm text-[#4A4A4A] dark:text-white/60">12:38pm</span>
+                                </div>
+                                <div class="flex items-center gap-3 p-3 ml-16 border-l-2 border-[#00C8B0] pl-6 bg-[#00C8B0]/5 dark:bg-transparent rounded-xl">
+                                    <span class="material-symbols-outlined text-[#00C8B0]">payments</span>
+                                    <span class="font-bold text-[#1A1A1A] dark:text-white">Purchase ($89.00)</span>
+                                    <span class="ml-auto text-sm text-[#00C8B0]">12:45pm</span>
+                                </div>
+                            </div>
                         </div>
-                        <h4 class="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Automatic Mapping</h4>
-                        <p class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            Instantly connect every creator post to Shopify orders without UTMs or manual tags.
-                        </p>
                     </div>
-
-                    <div class="glass-premium rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all">
-                        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-[#1746EA]/10 dark:bg-transparent text-[#1746EA] flex items-center justify-center mb-4 lg:mb-6">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">bolt</span>
-                        </div>
-                        <h4 class="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Real-time Tracking</h4>
-                        <p class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            Watch conversions happen live with our low-latency attribution engine.
-                        </p>
-                    </div>
-
-                    <div class="glass-premium rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all">
-                        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-[#1746EA]/10 dark:bg-transparent text-[#1746EA] flex items-center justify-center mb-4 lg:mb-6">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">dashboard</span>
-                        </div>
-                        <h4 class="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">Unified Dashboard</h4>
-                        <p class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            All your creator metrics, ROAS, and LTV in one premium high-fidelity view.
-                        </p>
-                    </div>
-
-                    <div class="glass-premium rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15 hover:border-[#1746EA]/30 dark:hover:border-[#1746EA]/50 transition-all">
-                        <div class="w-12 h-12 lg:w-14 lg:h-14 rounded-xl bg-[#1746EA]/10 dark:bg-transparent text-[#1746EA] flex items-center justify-center mb-4 lg:mb-6">
-                            <span class="material-symbols-outlined text-2xl lg:text-3xl">trending_up</span>
-                        </div>
-                        <h4 class="text-lg lg:text-xl font-bold mb-2 lg:mb-3 text-[#1A1A1A] dark:text-white">True ROI Analytics</h4>
-                        <p class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                            Calculate the exact dollar return on every cent of creator spend.
+                    <div class="order-1 lg:order-2">
+                        <h2 class="font-grotesque text-4xl lg:text-5xl font-black mb-6 text-[#1A1A1A] dark:text-white">
+                            <span class="text-[#0066FF]">#</span> What's actually driving purchases?
+                        </h2>
+                        <p class="text-lg text-[#4A4A4A] dark:text-white/80 leading-relaxed">
+                            Connect every interaction—from a creator's Instagram story to a product page view—directly to revenue. See the exact customer journey from first touch to final checkout with multi-touch attribution.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Social Proof Carousel -->
-        <section class="py-12 lg:py-20 border-y border-[#1746EA]/10 dark:border-white/15">
+        <!-- SECTION 3: Which creators deliver true ROI? -->
+        <section class="py-24 bg-white dark:bg-black border-y border-[#0066FF]/10 dark:border-white/15">
             <div class="container mx-auto px-6">
-                <div class="text-center mb-8 lg:mb-12">
-                    <span class="text-xs lg:text-sm uppercase tracking-widest text-[#4A4A4A] dark:text-white/70">Trusted by 450+ DTC brands</span>
-                </div>
-                <div class="flex justify-center gap-6 lg:gap-12 flex-wrap items-center opacity-50">
-                    <span class="text-xl lg:text-2xl font-bold text-[#4A4A4A] dark:text-white/70">Gymshark</span>
-                    <span class="text-xl lg:text-2xl font-bold text-[#4A4A4A] dark:text-white/70">Huel</span>
-                    <span class="text-xl lg:text-2xl font-bold text-[#4A4A4A] dark:text-white/70">MVMT</span>
-                    <span class="text-xl lg:text-2xl font-bold text-[#4A4A4A] dark:text-white/70">Cupshe</span>
-                    <span class="text-xl lg:text-2xl font-bold text-[#4A4A4A] dark:text-white/70">Fashion Nova</span>
-                    <span class="text-xl lg:text-2xl font-bold text-[#4A4A4A] dark:text-white/70">PrettyLittleThing</span>
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="font-grotesque text-4xl lg:text-5xl font-black mb-6 text-[#1A1A1A] dark:text-white">
+                            <span class="text-[#0066FF]">#</span> Which creators deliver true ROI?
+                        </h2>
+                        <p class="text-lg text-[#4A4A4A] dark:text-white/80 leading-relaxed">
+                            Go beyond likes and comments. Lumétria calculates the precise return on investment for every dollar spent on creator content, so you can optimize for revenue, not just engagement.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="glass-card rounded-3xl p-6 border border-[#0066FF]/10 dark:border-white/15">
+                            <div class="text-sm font-medium text-[#4A4A4A] dark:text-white/60 mb-4">ROAS BY CREATOR</div>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[#1A1A1A] dark:text-white">@beautycreator</span>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-24 h-2 bg-[#0066FF]/20 dark:bg-white/10 rounded-full overflow-hidden">
+                                            <div class="h-full w-4/5 bg-gradient-to-r from-[#0066FF] to-[#00C8B0] rounded-full"></div>
+                                        </div>
+                                        <span class="font-bold text-[#0066FF]">4.5x</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[#1A1A1A] dark:text-white">@fashionista</span>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-24 h-2 bg-[#0066FF]/20 dark:bg-white/10 rounded-full overflow-hidden">
+                                            <div class="h-full w-3/5 bg-gradient-to-r from-[#0066FF] to-[#00C8B0] rounded-full"></div>
+                                        </div>
+                                        <span class="font-bold text-[#0066FF]">3.2x</span>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-[#1A1A1A] dark:text-white">@lifestyleco</span>
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-24 h-2 bg-[#0066FF]/20 dark:bg-white/10 rounded-full overflow-hidden">
+                                            <div class="h-full w-5/6 bg-gradient-to-r from-[#0066FF] to-[#00C8B0] rounded-full"></div>
+                                        </div>
+                                        <span class="font-bold text-[#0066FF]">5.1x</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA with Calendly Integration -->
-        <section class="py-16 lg:py-32 relative">
+        <!-- FEATURES SECTION -->
+        <section class="py-24 bg-white dark:bg-black">
             <div class="container mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <h2 class="font-grotesque text-4xl lg:text-5xl font-black mb-16 text-center text-[#1A1A1A] dark:text-white">
+                    <span class="text-[#0066FF]">#</span> What makes Lumétria unique
+                </h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="glass-card rounded-3xl p-8 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#0066FF]/10 dark:bg-transparent text-[#0066FF] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">public</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[#1A1A1A] dark:text-white">Real-Time Revenue Map</h3>
+                        <p class="text-sm text-[#4A4A4A] dark:text-white/70">See which creator content is generating sales across the globe live.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="glass-card rounded-3xl p-8 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#0066FF]/10 dark:bg-transparent text-[#0066FF] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">timeline</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[#1A1A1A] dark:text-white">Customer Journey Tracking</h3>
+                        <p class="text-sm text-[#4A4A4A] dark:text-white/70">Follow individual customer paths from first click to purchase.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="glass-card rounded-3xl p-8 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#0066FF]/10 dark:bg-transparent text-[#0066FF] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">trending_up</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[#1A1A1A] dark:text-white">ROI Trend Analysis</h3>
+                        <p class="text-sm text-[#4A4A4A] dark:text-white/70">Track the performance of your creator programs over time.</p>
+                    </div>
+                    <!-- Feature 4 -->
+                    <div class="glass-card rounded-3xl p-8 text-center">
+                        <div class="w-16 h-16 mx-auto mb-6 rounded-2xl bg-[#0066FF]/10 dark:bg-transparent text-[#0066FF] flex items-center justify-center">
+                            <span class="material-symbols-outlined text-3xl">star</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[#1A1A1A] dark:text-white">High-Value Customer ID</h3>
+                        <p class="text-sm text-[#4A4A4A] dark:text-white/70">Pinpoint which creators bring in your best customers (LTV).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FINAL CTA with Calendly -->
+        <section class="py-24 bg-[#0A1929] dark:bg-black text-white">
+            <div class="container mx-auto px-6">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <!-- Left Content -->
                     <div>
-                        <h2 class="font-grotesque text-4xl lg:text-6xl font-black mb-4 lg:mb-6 text-[#1A1A1A] dark:text-white">
-                            Ready to Stop<br />Wasting Ad Budget?
+                        <h2 class="font-grotesque text-5xl lg:text-6xl font-black mb-6 text-white">
+                            Ready to stop<br>wasting ad budget?
                         </h2>
-                        <p class="text-lg lg:text-xl text-[#4A4A4A] dark:text-white/85 mb-8 lg:mb-12 leading-relaxed">
+                        <p class="text-xl text-white/70 mb-12 leading-relaxed">
                             Join 450+ high-growth brands using Lumétria to master their UGC strategy. Book a 15-minute strategy call with our attribution experts.
                         </p>
-
-                        <!-- Benefits List -->
-                        <div class="space-y-4 lg:space-y-6">
+                        <div class="space-y-6">
                             <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-[#1746EA]/10 dark:bg-transparent border border-[#1746EA]/10 dark:border-white/15 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[#1746EA]">calendar_today</span>
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[#0066FF]">calendar_today</span>
                                 </div>
                                 <div>
-                                    <div class="font-bold text-base lg:text-lg text-[#1A1A1A] dark:text-white">Pick your time</div>
-                                    <div class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80">15-min strategy session, zero pressure</div>
+                                    <div class="font-bold text-lg text-white">Pick your time</div>
+                                    <div class="text-white/60">15-min strategy session, zero pressure</div>
                                 </div>
                             </div>
                             <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-[#1746EA]/10 dark:bg-transparent border border-[#1746EA]/10 dark:border-white/15 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[#1746EA]">analytics</span>
+                                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-[#0066FF]">analytics</span>
                                 </div>
                                 <div>
-                                    <div class="font-bold text-base lg:text-lg text-[#1A1A1A] dark:text-white">Free UGC Audit</div>
-                                    <div class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80">We'll analyze your last 30 days of spend</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center gap-4">
-                                <div class="w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-[#1746EA]/10 dark:bg-transparent border border-[#1746EA]/10 dark:border-white/15 flex items-center justify-center">
-                                    <span class="material-symbols-outlined text-[#1746EA]">rocket_launch</span>
-                                </div>
-                                <div>
-                                    <div class="font-bold text-base lg:text-lg text-[#1A1A1A] dark:text-white">Live Dashboard Access</div>
-                                    <div class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80">See exactly how Lumétria works with your data</div>
+                                    <div class="font-bold text-lg text-white">Free UGC Audit</div>
+                                    <div class="text-white/60">We'll analyze your last 30 days of spend</div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Calendly Embed (Real Integration) -->
-                    <div class="relative mt-8 lg:mt-0">
-                        <div class="absolute -inset-4 bg-gradient-to-r from-[#1746EA] to-[#2F5DFF] rounded-[2rem] blur-2xl opacity-20"></div>
-                        <div class="relative glass-premium rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-[#1746EA]/10 dark:border-white/15">
-                            <div class="text-center mb-6 lg:mb-8">
-                                <h3 class="text-xl lg:text-2xl font-bold mb-2 text-[#1A1A1A] dark:text-white">Schedule Your Demo</h3>
-                                <p class="text-sm lg:text-base text-[#4A4A4A] dark:text-white/80">Select a time that works for you</p>
+                    <!-- Calendly Widget -->
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-[#0066FF] to-[#2F5DFF] rounded-[2rem] blur-2xl opacity-30"></div>
+                        <div class="relative bg-white dark:bg-black rounded-3xl p-6 lg:p-8 border border-[#0066FF]/10 dark:border-white/15">
+                            <div class="text-center mb-6">
+                                <h3 class="text-2xl font-bold mb-2 text-[#1A1A1A] dark:text-white">Schedule Your Demo</h3>
+                                <p class="text-sm text-[#4A4A4A] dark:text-white/60">Select a time that works for you</p>
                             </div>
-                            
-                            <!-- Real Calendly Inline Widget -->
                             <div class="calendly-inline-widget rounded-xl overflow-hidden" 
-                                 data-url="https://calendly.com/lumetria-demo/30min?primary_color=1746EA"
+                                 data-url="https://calendly.com/lumetria-demo/30min?primary_color=0066FF"
                                  style="min-width:320px; height:700px;">
                             </div>
-                            
-                            <!-- Fallback for when Calendly doesn't load -->
-                            <div class="text-center mt-4 hidden" id="calendly-fallback">
-                                <p class="text-xs text-[#4A4A4A] dark:text-white/70 mb-3">Can't load calendar? Book directly:</p>
-                                <a href="https://calendly.com/lumetria-demo/30min" 
-                                   target="_blank" 
-                                   class="inline-block bg-[#1746EA] hover:bg-[#2F5DFF] text-white px-6 py-3 rounded-xl text-sm font-bold transition-all">
-                                    Open Booking Page →
-                                </a>
-                            </div>
-
-                            <p class="text-center text-xs text-[#4A4A4A] dark:text-white/70 mt-4">
+                            <p class="text-center text-xs text-[#4A4A4A] dark:text-white/60 mt-4">
                                 Free consultation · No credit card required
                             </p>
                         </div>
@@ -858,68 +547,51 @@
         </section>
     </main>
 
-    <!-- Premium Footer -->
-    <footer class="border-t border-[#1746EA]/10 dark:border-white/15 py-12 lg:py-16">
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-black border-t border-[#0066FF]/10 dark:border-white/15 py-16">
         <div class="container mx-auto px-6">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12 lg:mb-16">
-                <div class="col-span-2 lg:col-span-1">
-                    <div class="flex items-center gap-3 mb-4 lg:mb-6">
-                        <!-- Footer Logo -->
-                        <img src="lumetria_logo_1-removebg-preview.png" 
-                             alt="Lumétria" 
-                             class="footer-logo"
-                             onerror="this.onerror=null; this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="hidden items-center gap-2" style="display: none;">
-                            <div class="w-8 h-8 bg-gradient-to-br from-[#1746EA] to-[#2F5DFF] rounded-lg flex items-center justify-center">
-                                <span class="material-symbols-outlined text-sm text-white">analytics</span>
-                            </div>
-                            <span class="text-lg lg:text-xl font-bold text-[#1A1A1A] dark:text-white">Lumétria</span>
-                        </div>
-                    </div>
-                    <p class="text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80 leading-relaxed">
-                        The AI attribution platform for Shopify brands running UGC ads.
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-2 md:col-span-1">
+                    <img src="lumetria_logo_1-removebg-preview.png" alt="Lumétria" class="logo-img mb-6">
+                    <p class="text-sm text-[#4A4A4A] dark:text-white/60 leading-relaxed">
+                        AI attribution platform for Shopify brands running UGC ads.
                     </p>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4 text-sm lg:text-base text-[#1A1A1A] dark:text-white">Product</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Features</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Pricing</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Integrations</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">API</a></li>
+                    <h4 class="font-bold mb-4 text-[#1A1A1A] dark:text-white">Product</h4>
+                    <ul class="space-y-3 text-sm text-[#4A4A4A] dark:text-white/60">
+                        <li><a href="#" class="hover:text-[#0066FF]">Features</a></li>
+                        <li><a href="#" class="hover:text-[#0066FF]">Pricing</a></li>
+                        <li><a href="#" class="hover:text-[#0066FF]">Integrations</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-bold mb-4 text-sm lg:text-base text-[#1A1A1A] dark:text-white">Company</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Blog</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Careers</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Contact</a></li>
+                    <h4 class="font-bold mb-4 text-[#1A1A1A] dark:text-white">Company</h4>
+                    <ul class="space-y-3 text-sm text-[#4A4A4A] dark:text-white/60">
+                        <li><a href="#" class="hover:text-[#0066FF]">About</a></li>
+                        <li><a href="#" class="hover:text-[#0066FF]">Blog</a></li>
+                        <li><a href="#" class="hover:text-[#0066FF]">Careers</a></li>
                     </ul>
                 </div>
-                <div class="col-span-2 lg:col-span-1">
-                    <h4 class="font-bold mb-4 text-sm lg:text-base text-[#1A1A1A] dark:text-white">Legal</h4>
-                    <ul class="space-y-2 lg:space-y-3 text-xs lg:text-sm text-[#4A4A4A] dark:text-white/80">
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Privacy</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Terms</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Security</a></li>
-                        <li><a href="#" class="hover:text-[#1746EA] dark:hover:text-[#1746EA] transition-colors">Cookies</a></li>
+                <div>
+                    <h4 class="font-bold mb-4 text-[#1A1A1A] dark:text-white">Legal</h4>
+                    <ul class="space-y-3 text-sm text-[#4A4A4A] dark:text-white/60">
+                        <li><a href="#" class="hover:text-[#0066FF]">Privacy</a></li>
+                        <li><a href="#" class="hover:text-[#0066FF]">Terms</a></li>
+                        <li><a href="#" class="hover:text-[#0066FF]">Security</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="text-center text-xs lg:text-sm text-[#4A4A4A] dark:text-white/70 pt-6 lg:pt-8 border-t border-[#1746EA]/10 dark:border-white/15">
-                © 2026 Lumétria Inc. All rights reserved. Made for Shopify brands that demand more.
+            <div class="text-center text-sm text-[#4A4A4A] dark:text-white/40 pt-8 border-t border-[#0066FF]/10 dark:border-white/15">
+                © 2026 Lumétria Inc. All rights reserved.
             </div>
         </div>
     </footer>
 
-    <!-- Calendly Widget JS -->
+    <!-- Scripts -->
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-    
-    <!-- GSAP Animations and Custom Scripts -->
     <script>
-        // Theme Toggle Function
+        // Theme Toggle
         function toggleTheme() {
             const html = document.documentElement;
             const isDark = html.classList.contains('dark');
@@ -933,187 +605,44 @@
                 icon.textContent = 'dark_mode';
             }
             
-            // Refresh Calendly iframe to match theme
+            // Refresh Calendly
             setTimeout(() => {
-                const calendlyWidget = document.querySelector('.calendly-inline-widget');
-                if (calendlyWidget && calendlyWidget.innerHTML === '') {
-                    const url = calendlyWidget.getAttribute('data-url');
-                    calendlyWidget.setAttribute('data-url', url);
+                const widget = document.querySelector('.calendly-inline-widget');
+                if (widget && widget.innerHTML === '') {
+                    const url = widget.getAttribute('data-url');
+                    widget.setAttribute('data-url', url);
                 }
             }, 100);
         }
 
-        // Mobile Menu Toggle
+        // Mobile Menu
         function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
+            document.getElementById('mobile-menu').classList.toggle('hidden');
         }
 
-        // Live Visitor Counter Simulation
+        // Live Visitor Counter
         function updateVisitorCount() {
-            const countElement = document.getElementById('visitor-count');
-            if (countElement) {
-                const base = 247;
-                const variation = Math.floor(Math.random() * 30) - 15;
-                countElement.textContent = base + variation;
-            }
+            const el = document.getElementById('visitor-count');
+            if (el) el.textContent = 247 + Math.floor(Math.random() * 30) - 15;
         }
         setInterval(updateVisitorCount, 5000);
 
-        // GSAP Scroll Animations
+        // GSAP Animations
         gsap.registerPlugin(ScrollTrigger);
-
-        // Fade Up Animations
-        gsap.utils.toArray('.glass-premium').forEach(element => {
-            gsap.from(element, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                    end: 'bottom 20%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 50,
-                opacity: 0,
-                duration: 1,
-                ease: 'power3.out'
+        gsap.utils.toArray('.glass-card').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: { trigger: el, start: 'top 80%' },
+                y: 30, opacity: 0, duration: 0.8
             });
         });
 
-        // Hero Title Animation
-        gsap.from('.font-grotesque span', {
-            scrollTrigger: {
-                trigger: '.font-grotesque',
-                start: 'top 80%',
-            },
-            y: 100,
-            opacity: 0,
-            duration: 1,
-            stagger: 0.2,
-            ease: 'power4.out'
-        });
-
         // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
+        document.addEventListener('click', (e) => {
             const menu = document.getElementById('mobile-menu');
-            const menuButton = event.target.closest('button');
-            if (!menuButton && !menu.contains(event.target) && !menu.classList.contains('hidden')) {
+            if (!e.target.closest('button') && !menu.contains(e.target) && !menu.classList.contains('hidden')) {
                 menu.classList.add('hidden');
             }
         });
-
-        // Calendly fallback handler
-        setTimeout(function() {
-            const calendlyWidget = document.querySelector('.calendly-inline-widget');
-            const fallback = document.getElementById('calendly-fallback');
-            
-            if (calendlyWidget && calendlyWidget.children.length === 0) {
-                fallback.classList.remove('hidden');
-            }
-        }, 5000);
     </script>
-    <style>
-        /* Mobile Responsiveness */
-        @media (max-width: 640px) {
-            .font-grotesque {
-                font-size: 3rem;
-                line-height: 1.1;
-            }
-        }
-        @media (max-width: 768px) {
-            .glass-premium {
-                backdrop-filter: blur(8px);
-            }
-            .dark .glass-premium {
-                backdrop-filter: none;
-            }
-            .fixed.bottom-6.left-6 {
-                bottom: 1rem;
-                left: 1rem;
-                right: 1rem;
-                max-width: calc(100% - 2rem);
-            }
-            .calendly-inline-widget {
-                height: 600px !important;
-            }
-        }
-
-        /* Smooth theme transition */
-        * {
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Dark mode card backgrounds - all black */
-        .dark .glass-premium,
-        .dark .hover-card,
-        .dark [class*="glass-premium"],
-        .dark [class*="hover-card"],
-        .dark .bg-white,
-        .dark .bg-\[\#0A0A0A\],
-        .dark .bg-gradient-to-b {
-            background-color: #000000 !important;
-            background-image: none !important;
-        }
-
-        /* Ensure borders are subtle in dark mode */
-        .dark .border-\[\#1746EA\]\/10,
-        .dark .border-\[\#1746EA\]\/20,
-        .dark .border-white\/5,
-        .dark .border-white\/10 {
-            border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        /* Remove any background gradients in dark mode */
-        .dark .bg-gradient-to-b {
-            background: #000000 !important;
-        }
-
-        .dark .bg-\[\#F5F8FF\] {
-            background-color: #000000 !important;
-        }
-
-        /* Icon backgrounds in dark mode */
-        .dark .bg-red-50,
-        .dark .bg-orange-50,
-        .dark .bg-blue-50,
-        .dark .bg-purple-50,
-        .dark .bg-\[\#1746EA\]\/10 {
-            background-color: transparent !important;
-        }
-
-        /* Ensure icons remain visible */
-        .dark .material-symbols-outlined {
-            color: inherit;
-        }
-
-        /* Calendar days in dark mode */
-        .dark .text-\[\#1A1A1A\] {
-            color: white !important;
-        }
-
-        .dark .text-\[\#4A4A4A\] {
-            color: rgba(255, 255, 255, 0.85) !important;
-        }
-
-        /* Hover effects in dark mode */
-        .dark .hover-card:hover,
-        .dark .glass-premium:hover {
-            border-color: rgba(23, 70, 234, 0.5) !important;
-        }
-
-        /* Time slot availability text */
-        .dark .text-\[\#1746EA\] {
-            color: #1746EA !important;
-        }
-
-        /* Disabled/booked slots */
-        .dark .opacity-50 .text-\[\#4A4A4A\] {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        /* Calendly dark mode adjustment */
-        .dark .calendly-inline-widget {
-            filter: invert(0.02) hue-rotate(180deg);
-        }
-    </style>
 </body>
 </html>
