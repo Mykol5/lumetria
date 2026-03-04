@@ -6,20 +6,16 @@
     <title>Lumétria · AI Attribution for Shopify UGC</title>
     <!-- Calendly CSS -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0,1" rel="stylesheet">
-    <!-- GSAP for scroll animations -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         /* Light mode (default) */
         :root {
@@ -34,6 +30,7 @@
             --cta-bg: #0a1929;
             --cta-text: #ffffff;
             --accent: #0066FF;
+            --accent-soft: #B7C7FF;
         }
 
         /* Dark mode */
@@ -52,7 +49,7 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.5;
@@ -60,268 +57,107 @@
             width: 100%;
             transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         .container {
             width: 100%;
             max-width: 1280px;
             margin: 0 auto;
             padding: 0 20px;
         }
-
-        /* Typography */
-        h1, h2, h3 {
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
-        }
+        h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; }
 
         /* Theme Toggle */
         .theme-toggle {
-            position: fixed;
-            top: 100px;
-            right: 20px;
-            z-index: 1001;
-            background: var(--navbar-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 50%;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            color: var(--accent);
+            position: fixed; top: 100px; right: 20px; z-index: 1001;
+            background: var(--navbar-bg); border: 1px solid var(--border-color); border-radius: 50%;
+            width: 48px; height: 48px; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; backdrop-filter: blur(10px); color: var(--accent);
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         /* Navigation */
         .navbar {
-            position: fixed;
-            top: 16px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: calc(100% - 32px);
-            max-width: 1200px;
-            background: var(--navbar-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 100px;
-            padding: 12px 20px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 32px); max-width: 1200px;
+            background: var(--navbar-bg); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); border-radius: 100px;
+            padding: 12px 20px; z-index: 1000; display: flex; align-items: center; justify-content: space-between;
         }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo img {
-            height: 32px;
-            width: auto;
-        }
-        body.dark .logo img {
-            filter: brightness(0) invert(1);
-        }
-
-        .nav-links {
-            display: none;
-        }
-        .nav-buttons {
-            display: none;
-        }
-        .mobile-menu-btn {
-            display: block;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--accent);
-        }
+        .logo img { height: 32px; width: auto; }
+        body.dark .logo img { filter: brightness(0) invert(1); }
+        .nav-links, .nav-buttons { display: none; }
+        .mobile-menu-btn { display: block; background: none; border: none; cursor: pointer; color: var(--accent); }
         .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 88px;
-            left: 16px;
-            right: 16px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 24px;
-            z-index: 999;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            display: none; position: fixed; top: 88px; left: 16px; right: 16px;
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px;
+            padding: 24px; z-index: 999; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
         .mobile-menu.active { display: block; }
         .mobile-menu a, .mobile-menu button {
-            display: block;
-            width: 100%;
-            padding: 12px 0;
-            text-align: left;
-            background: none;
-            border: none;
-            font-size: 16px;
-            color: var(--text-primary);
-            text-decoration: none;
+            display: block; width: 100%; padding: 12px 0; text-align: left;
+            background: none; border: none; font-size: 16px; color: var(--text-primary); text-decoration: none;
         }
-        .mobile-menu .divider {
-            height: 1px;
-            background: var(--border-color);
-            margin: 12px 0;
-        }
+        .mobile-menu .divider { height: 1px; background: var(--border-color); margin: 12px 0; }
 
-        /* Live Visitor Counter (fixed) */
+        /* Live Visitor Counter */
         .visitor-counter {
-            position: fixed;
-            bottom: 16px;
-            left: 16px;
-            right: 16px;
-            background: var(--navbar-bg);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--border-color);
-            border-radius: 100px;
-            padding: 12px 20px;
-            z-index: 1000;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            max-width: 400px;
-            margin: 0 auto;
+            position: fixed; bottom: 16px; left: 16px; right: 16px; z-index: 1000;
+            background: var(--navbar-bg); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); border-radius: 100px;
+            padding: 12px 20px; display: flex; align-items: center; gap: 12px;
+            max-width: 400px; margin: 0 auto;
         }
         .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: relative;
+            width: 8px; height: 8px; background: var(--accent); border-radius: 50%; position: relative;
         }
         .pulse-dot::after {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            width: 16px;
-            height: 16px;
-            background: rgba(0, 102, 255, 0.3);
-            border-radius: 50%;
-            animation: pulse 2s infinite;
+            content: ''; position: absolute; top: -4px; left: -4px; width: 16px; height: 16px;
+            background: rgba(0,102,255,0.3); border-radius: 50%; animation: pulse 2s infinite;
         }
-        @keyframes pulse {
-            0% { transform: scale(0.8); opacity: 0.5; }
-            100% { transform: scale(1.5); opacity: 0; }
-        }
+        @keyframes pulse { 0% { transform: scale(0.8); opacity: 0.5; } 100% { transform: scale(1.5); opacity: 0; } }
         .visitor-info { flex: 1; }
-        .visitor-label {
-            font-size: 12px;
-            color: var(--text-secondary);
-        }
-        .visitor-count {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-        .visitor-avatars {
-            display: flex;
-            margin-left: auto;
-        }
+        .visitor-label { font-size: 12px; color: var(--text-secondary); }
+        .visitor-count { font-size: 20px; font-weight: 700; color: var(--text-primary); }
+        .visitor-avatars { display: flex; margin-left: auto; }
         .avatar {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: 2px solid var(--bg-primary);
-            margin-left: -8px;
-            background: linear-gradient(135deg, var(--accent), #2F5DFF);
+            width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--bg-primary);
+            margin-left: -8px; background: linear-gradient(135deg, var(--accent), #2F5DFF);
         }
 
         /* Hero Section */
-        .hero {
-            padding: 120px 0 60px;
-            background: var(--bg-primary);
-            text-align: center;
-        }
+        .hero { padding: 120px 0 60px; background: var(--bg-primary); text-align: center; }
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 100px;
-            padding: 8px 16px;
-            margin-bottom: 24px;
-            font-size: 14px;
-            color: var(--text-secondary);
+            display: inline-flex; align-items: center; gap: 8px; background: var(--card-bg);
+            border: 1px solid var(--border-color); border-radius: 100px; padding: 8px 16px;
+            margin-bottom: 24px; font-size: 14px; color: var(--text-secondary);
         }
-        .hero h1 {
-            font-size: clamp(36px, 8vw, 72px);
-            margin-bottom: 20px;
-        }
+        .hero h1 { font-size: clamp(36px, 8vw, 72px); margin-bottom: 20px; }
         .hero h1 span { color: var(--accent); }
         .hero p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 32px;
+            font-size: 18px; color: var(--text-secondary); max-width: 600px; margin: 0 auto 32px;
         }
-        .hero-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 40px;
-        }
+        .hero-buttons { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
         .btn-primary {
-            background: var(--accent);
-            color: white;
-            border: none;
-            border-radius: 100px;
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s;
+            background: var(--accent); color: white; border: none; border-radius: 100px;
+            padding: 16px 32px; font-size: 16px; font-weight: 600; cursor: pointer; transition: background 0.3s;
             width: 100%;
         }
         .btn-primary:hover { background: #2F5DFF; }
         .btn-secondary {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 100px;
-            padding: 16px 32px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            color: var(--text-primary);
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 100px;
+            padding: 16px 32px; font-size: 16px; font-weight: 600; cursor: pointer;
+            width: 100%; color: var(--text-primary);
         }
         .btn-secondary:hover { background: rgba(0,102,255,0.05); }
-        .trust {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-        }
+        .trust { display: flex; flex-direction: column; align-items: center; gap: 12px; }
         .avatars { display: flex; }
         .trust-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 2px solid var(--bg-primary);
-            margin-left: -8px;
-            background: var(--text-secondary);
+            width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--bg-primary);
+            margin-left: -8px; background: var(--text-secondary);
         }
         .trust-avatar:first-child { margin-left: 0; }
         .trust-avatar.special {
-            background: linear-gradient(135deg, var(--accent), #2F5DFF);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: 600;
+            background: linear-gradient(135deg, var(--accent), #2F5DFF); color: white;
+            display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600;
         }
         .trust-text { text-align: center; }
         .trust-text strong { display: block; color: var(--text-primary); }
@@ -329,466 +165,216 @@
 
         /* Dashboard Mockup (Hero) */
         .dashboard-mockup {
-            margin-top: 40px;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 16px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-top: 40px; background: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 24px; padding: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .mockup-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-        .mockup-dot {
-            width: 12px; height: 12px; border-radius: 50%;
-        }
+        .mockup-header { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+        .mockup-dot { width: 12px; height: 12px; border-radius: 50%; }
         .mockup-dot.red { background: #ff5f56; }
         .mockup-dot.yellow { background: #ffbd2e; }
         .mockup-dot.green { background: #27c93f; }
-        .mockup-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
-        }
-        .mockup-card {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 16px;
-        }
-        .mockup-row {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .mockup-bar {
-            flex: 1;
-            height: 8px;
-            background: rgba(0,102,255,0.1);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        .mockup-bar-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent), #2F5DFF);
-            border-radius: 4px;
-        }
+        .mockup-content { display: grid; grid-template-columns: 1fr; gap: 16px; }
+        .mockup-card { background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 16px; padding: 16px; }
+        .mockup-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .mockup-bar { flex: 1; height: 8px; background: rgba(0,102,255,0.1); border-radius: 4px; overflow: hidden; }
+        .mockup-bar-fill { height: 100%; background: linear-gradient(90deg, var(--accent), #2F5DFF); border-radius: 4px; }
 
-        /* Pain Points */
-        .pain-points {
-            padding: 60px 0;
-            background: var(--bg-primary);
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .section-header h2 {
-            font-size: 32px;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
-        .section-header p {
-            color: var(--text-secondary);
-            font-size: 16px;
-        }
-        .pain-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-        }
+        /* Pain Points: "Do you recognize yourself?" */
+        .pain-points { padding: 60px 0; background: var(--bg-primary); }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-header h2 { font-size: 32px; margin-bottom: 16px; color: var(--text-primary); }
+        .section-header p { color: var(--text-secondary); font-size: 16px; }
+        .pain-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
         .pain-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 24px;
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 24px;
         }
-        .pain-icon {
-            width: 48px; height: 48px;
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 16px;
-        }
-        .pain-card h3 {
-            font-size: 20px;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        .pain-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-            margin-bottom: 16px;
-        }
-        .pain-tag {
-            font-size: 12px;
-            font-family: monospace;
-            color: var(--accent);
-            opacity: 0.7;
-        }
+        .pain-icon { width: 48px; height: 48px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+        .pain-card h3 { font-size: 20px; margin-bottom: 8px; color: var(--text-primary); }
+        .pain-card p { color: var(--text-secondary); font-size: 14px; margin-bottom: 16px; }
+        .pain-tag { font-size: 12px; font-family: monospace; color: var(--accent); opacity: 0.7; }
 
-        /* Traffic Sources (like Taap.it) */
-        .traffic-section {
-            padding: 60px 0;
-            background: var(--bg-secondary);
-        }
-        .traffic-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 32px;
-        }
+        /* Traffic Analysis (exact Taap.it replica) */
+        .traffic-section { padding: 60px 0; background: var(--bg-secondary); }
+        .traffic-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 32px; }
         .traffic-card {
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 24px;
+            background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 24px; padding: 24px;
         }
         .traffic-header {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            font-size: 14px; font-weight: 600; color: var(--text-secondary); margin-bottom: 16px;
+            text-transform: uppercase; display: flex; align-items: center; gap: 8px;
         }
-        .traffic-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-        .traffic-item .label {
-            color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .traffic-item .value {
-            font-weight: 600;
-            color: var(--accent);
-        }
-        .traffic-bar {
-            height: 6px;
-            background: rgba(0,102,255,0.1);
-            border-radius: 4px;
-            margin: 8px 0 16px;
-        }
-        .traffic-bar-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 4px;
-            width: 0%;
-        }
+        .traffic-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+        .traffic-item .label { color: var(--text-primary); display: flex; align-items: center; gap: 6px; }
+        .traffic-item .value { font-weight: 600; color: var(--accent); }
+        .traffic-bar { height: 6px; background: rgba(0,102,255,0.1); border-radius: 4px; margin: 8px 0 16px; }
+        .traffic-bar-fill { height: 100%; background: var(--accent); border-radius: 4px; width: 0%; }
 
-        /* Journey Mockup (What's driving purchases) */
-        .journey-mockup {
-            max-width: 800px;
-            margin: 0 auto;
+        /* Sales by location/product (Taap.it style) */
+        .sales-section { padding: 60px 0; background: var(--bg-primary); }
+        .sales-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 32px; }
+        .sales-card {
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 24px;
         }
-        .journey-step {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            background: var(--card-bg);
-            padding: 16px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
+        .comparison-table { width: 100%; }
+        .comparison-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 0; border-bottom: 1px solid var(--border-color);
         }
-        .journey-step.highlight {
-            border: 2px solid var(--accent);
-        }
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0,102,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            font-weight: 700;
-        }
-        .step-number.highlight {
-            background: var(--accent);
-            color: white;
-        }
-        .step-content {
-            flex: 1;
-        }
-        .step-title {
-            font-weight: 600;
-        }
-        .step-subtitle {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
-        .step-value {
-            font-weight: 700;
-            color: var(--accent);
-        }
-        .arrow-down {
-            text-align: center;
-            color: var(--text-secondary);
-            margin: 4px 0;
-        }
+        .comparison-row:last-child { border-bottom: none; }
+        .comparison-label { color: var(--text-primary); font-weight: 500; }
+        .comparison-values { display: flex; gap: 16px; }
+        .prev-value { color: var(--text-secondary); text-decoration: line-through; opacity: 0.7; }
+        .current-value { color: var(--accent); font-weight: 600; }
+        .trend-up { color: #00C8B0; margin-left: 8px; }
 
-        /* Features */
-        .features {
-            padding: 60px 0;
-            background: var(--bg-primary);
+        /* Product table */
+        .product-table { width: 100%; border-collapse: collapse; }
+        .product-table th {
+            text-align: left; font-size: 12px; color: var(--text-secondary);
+            font-weight: 500; padding-bottom: 12px;
         }
+        .product-table td {
+            padding: 10px 0; border-bottom: 1px solid var(--border-color); color: var(--text-primary);
+        }
+        .product-table td:last-child { color: var(--accent); font-weight: 600; }
+
+        /* User Experience Score (like Taap.it) */
+        .ux-section { padding: 60px 0; background: var(--bg-secondary); }
+        .ux-score-card {
+            background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 32px;
+            padding: 32px; max-width: 400px; margin: 0 auto; text-align: center;
+        }
+        .ux-score-number {
+            font-size: 72px; font-weight: 800; color: var(--accent); line-height: 1;
+        }
+        .ux-score-label { font-size: 24px; font-weight: 600; margin: 8px 0 16px; }
+        .ux-score-description { color: var(--text-secondary); margin-bottom: 24px; }
+        .ux-meter {
+            height: 8px; background: linear-gradient(90deg, #ff5f56, #ffbd2e, #00C8B0);
+            border-radius: 4px; margin: 16px 0; position: relative;
+        }
+        .ux-meter-indicator {
+            position: absolute; top: -4px; width: 4px; height: 16px;
+            background: var(--text-primary); border-radius: 2px;
+        }
+        .ux-stats { display: flex; justify-content: space-between; margin-top: 24px; }
+        .ux-stat-item { text-align: center; }
+        .ux-stat-value { font-weight: 700; color: var(--accent); }
+        .ux-stat-label { font-size: 12px; color: var(--text-secondary); }
+
+        /* Competitor Comparison (inspired by XTablo) */
+        .competitor-section { padding: 60px 0; background: var(--bg-primary); }
+        .comparison-grid {
+            display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 32px;
+        }
+        .comparison-col {
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 24px;
+        }
+        .comparison-col h3 {
+            font-size: 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 8px;
+        }
+        .comparison-col.against h3 { color: #ff5f56; }
+        .comparison-col.for h3 { color: var(--accent); }
+        .comparison-list { list-style: none; }
+        .comparison-list li {
+            display: flex; align-items: center; gap: 12px; padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .comparison-list li:last-child { border-bottom: none; }
+        .comparison-list .material-symbols-outlined { font-size: 20px; }
+        .comparison-list .against-icon { color: #ff5f56; }
+        .comparison-list .for-icon { color: #00C8B0; }
+
+        /* Features (unique to Lumétria) */
+        .features { padding: 60px 0; background: var(--bg-primary); }
         .features-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-            margin-top: 40px;
+            display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 40px;
         }
         .feature-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 24px;
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px; padding: 24px;
         }
         .feature-icon {
-            width: 48px; height: 48px;
-            border-radius: 12px;
-            background: rgba(0,102,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            margin-bottom: 16px;
+            width: 48px; height: 48px; border-radius: 12px; background: rgba(0,102,255,0.1);
+            display: flex; align-items: center; justify-content: center; color: var(--accent); margin-bottom: 16px;
         }
-        .feature-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-            color: var(--text-primary);
-        }
-        .feature-card p {
-            color: var(--text-secondary);
-            font-size: 14px;
-        }
+        .feature-card h3 { font-size: 18px; margin-bottom: 8px; color: var(--text-primary); }
+        .feature-card p { color: var(--text-secondary); font-size: 14px; }
 
         /* Stats */
-        .stats {
-            padding: 60px 0;
-            background: var(--bg-secondary);
-        }
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        .stats { padding: 60px 0; background: var(--bg-secondary); }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .stat-card {
-            text-align: center;
-            padding: 24px;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
+            text-align: center; padding: 24px; background: var(--bg-primary);
+            border: 1px solid var(--border-color); border-radius: 24px;
         }
-        .stat-number {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 4px;
-        }
-        .stat-label {
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
+        .stat-number { font-size: 36px; font-weight: 800; color: var(--accent); margin-bottom: 4px; }
+        .stat-label { font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; }
 
         /* FAQ Accordion */
-        .faq {
-            padding: 60px 0;
-            background: var(--bg-primary);
-        }
-        .faq-grid {
-            max-width: 800px;
-            margin: 40px auto 0;
-        }
-        .faq-item {
-            border-bottom: 1px solid var(--border-color);
-        }
+        .faq { padding: 60px 0; background: var(--bg-primary); }
+        .faq-grid { max-width: 800px; margin: 40px auto 0; }
+        .faq-item { border-bottom: 1px solid var(--border-color); }
         .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            cursor: pointer;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 0; cursor: pointer;
         }
-        .faq-question h3 {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .faq-question span {
-            color: var(--accent);
-            transition: transform 0.3s;
-        }
+        .faq-question h3 { font-size: 18px; font-weight: 600; color: var(--text-primary); }
+        .faq-question span { color: var(--accent); transition: transform 0.3s; }
         .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s;
-            padding: 0;
-            color: var(--text-secondary);
+            max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s;
+            padding: 0; color: var(--text-secondary);
         }
-        .faq-answer.show {
-            max-height: 200px;
-            padding-bottom: 20px;
-        }
+        .faq-answer.show { max-height: 200px; padding-bottom: 20px; }
 
-        /* Pricing Card (optional) */
-        .pricing {
-            padding: 60px 0;
-            background: var(--bg-secondary);
-        }
+        /* Pricing (like Taap.it) */
+        .pricing { padding: 60px 0; background: var(--bg-secondary); }
         .pricing-card {
-            max-width: 400px;
-            margin: 0 auto;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 32px;
-            padding: 32px;
-            text-align: center;
+            max-width: 400px; margin: 0 auto; background: var(--bg-primary);
+            border: 1px solid var(--border-color); border-radius: 32px; padding: 32px; text-align: center;
         }
-        .pricing-price {
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--accent);
-            margin: 16px 0;
-        }
-        .pricing-price small {
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        .pricing-features {
-            list-style: none;
-            margin: 24px 0;
-        }
+        .pricing-price { font-size: 48px; font-weight: 800; color: var(--accent); margin: 16px 0; }
+        .pricing-price small { font-size: 16px; color: var(--text-secondary); }
+        .pricing-features { list-style: none; margin: 24px 0; }
         .pricing-features li {
-            padding: 8px 0;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--border-color);
+            padding: 8px 0; color: var(--text-secondary); border-bottom: 1px solid var(--border-color);
         }
 
-        /* CTA Section */
-        .cta {
-            padding: 60px 0;
-            background: var(--cta-bg);
-            color: var(--cta-text);
-        }
-        .cta-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-        .cta h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .cta p {
-            color: rgba(255,255,255,0.7);
-            font-size: 18px;
-            margin-bottom: 32px;
-        }
-        .cta-benefits {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .benefit-item {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+        /* Final CTA */
+        .cta { padding: 60px 0; background: var(--cta-bg); color: var(--cta-text); }
+        .cta-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .cta h2 { font-size: 36px; margin-bottom: 20px; }
+        .cta p { color: rgba(255,255,255,0.7); font-size: 18px; margin-bottom: 32px; }
+        .cta-benefits { display: flex; flex-direction: column; gap: 20px; }
+        .benefit-item { display: flex; align-items: center; gap: 16px; }
         .benefit-icon {
-            width: 48px; height: 48px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
+            width: 48px; height: 48px; background: rgba(255,255,255,0.1);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent);
         }
         .benefit-text h4 { font-weight: 600; color: white; }
-        .benefit-text p {
-            font-size: 14px;
-            color: rgba(255,255,255,0.6);
-            margin: 0;
-        }
+        .benefit-text p { font-size: 14px; color: rgba(255,255,255,0.6); margin: 0; }
         .calendly-wrapper {
-            background: white;
-            border-radius: 24px;
-            padding: 24px;
-            position: relative;
+            background: white; border-radius: 24px; padding: 24px; position: relative;
         }
         .calendly-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -4px; left: -4px; right: -4px; bottom: -4px;
-            background: linear-gradient(135deg, var(--accent), #2F5DFF);
-            border-radius: 28px;
-            opacity: 0.3;
-            z-index: -1;
+            content: ''; position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px;
+            background: linear-gradient(135deg, var(--accent), #2F5DFF); border-radius: 28px; opacity: 0.3; z-index: -1;
         }
-        .calendly-inline-widget {
-            min-width: 280px;
-            height: 600px;
-            border-radius: 16px;
-            overflow: hidden;
-        }
+        .calendly-inline-widget { min-width: 280px; height: 600px; border-radius: 16px; overflow: hidden; }
 
         /* Footer */
-        .footer {
-            padding: 40px 0;
-            background: var(--footer-bg);
-            border-top: 1px solid var(--border-color);
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 32px;
-        }
-        .footer-logo img {
-            height: 28px;
-            width: auto;
-        }
+        .footer { padding: 40px 0; background: var(--footer-bg); border-top: 1px solid var(--border-color); }
+        .footer-grid { display: grid; grid-template-columns: 1fr; gap: 32px; }
+        .footer-logo img { height: 28px; width: auto; }
         body.dark .footer-logo img { filter: brightness(0) invert(1); }
-        .footer-links {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-        .footer-column h4 {
-            font-size: 14px;
-            margin-bottom: 16px;
-            color: var(--text-primary);
-        }
+        .footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .footer-column h4 { font-size: 14px; margin-bottom: 16px; color: var(--text-primary); }
         .footer-column ul { list-style: none; }
         .footer-column li { margin-bottom: 12px; }
-        .footer-column a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-        }
+        .footer-column a { color: var(--text-secondary); text-decoration: none; font-size: 14px; }
         .footer-column a:hover { color: var(--accent); }
         .footer-bottom {
-            margin-top: 32px;
-            padding-top: 32px;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-secondary);
+            margin-top: 32px; padding-top: 32px; border-top: 1px solid var(--border-color);
+            text-align: center; font-size: 12px; color: var(--text-secondary);
         }
 
         /* Responsive */
@@ -798,6 +384,8 @@
             .trust { flex-direction: row; justify-content: center; }
             .pain-grid { grid-template-columns: repeat(2, 1fr); }
             .traffic-grid { grid-template-columns: repeat(2, 1fr); }
+            .sales-grid { grid-template-columns: repeat(2, 1fr); }
+            .comparison-grid { grid-template-columns: repeat(2, 1fr); }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .stats-grid { grid-template-columns: repeat(4, 1fr); }
             .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
@@ -806,43 +394,25 @@
         @media (min-width: 1024px) {
             .navbar { padding: 12px 32px; }
             .nav-links {
-                display: flex;
-                gap: 32px;
+                display: flex; gap: 32px;
             }
-            .nav-links a {
-                color: var(--text-secondary);
-                text-decoration: none;
-                font-size: 14px;
-            }
+            .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; }
             .nav-links a:hover { color: var(--accent); }
             .nav-buttons {
-                display: flex;
-                align-items: center;
-                gap: 16px;
+                display: flex; align-items: center; gap: 16px;
             }
             .nav-buttons .signin {
-                background: none;
-                border: none;
-                color: var(--text-secondary);
-                cursor: pointer;
+                background: none; border: none; color: var(--text-secondary); cursor: pointer;
             }
             .nav-buttons .demo {
-                background: var(--accent);
-                color: white;
-                border: none;
-                border-radius: 100px;
-                padding: 8px 20px;
-                font-weight: 600;
-                cursor: pointer;
+                background: var(--accent); color: white; border: none; border-radius: 100px;
+                padding: 8px 20px; font-weight: 600; cursor: pointer;
             }
             .mobile-menu-btn { display: none; }
             .hero { padding: 160px 0 80px; }
             .hero-content {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                align-items: center;
-                text-align: left;
-                gap: 60px;
+                display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+                text-align: left; gap: 60px;
             }
             .hero-badge { margin-left: 0; }
             .hero p { margin-left: 0; }
@@ -910,7 +480,7 @@
     </div>
 
     <main>
-        <!-- Hero Section -->
+        <!-- HERO SECTION (exact Taap.it structure) -->
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
@@ -1000,7 +570,7 @@
             </div>
         </section>
 
-        <!-- Pain Points: Do you recognize yourself? -->
+        <!-- PAIN POINTS: "Do you recognize yourself?" -->
         <section class="pain-points">
             <div class="container">
                 <div class="section-header">
@@ -1036,7 +606,7 @@
             </div>
         </section>
 
-        <!-- Traffic Analysis (animated) -->
+        <!-- TRAFFIC ANALYSIS: "What brings visitors to your site?" (exact Taap.it replica) -->
         <section class="traffic-section">
             <div class="container">
                 <div class="section-header">
@@ -1046,145 +616,154 @@
                 <div class="traffic-grid">
                     <!-- Sources Card -->
                     <div class="traffic-card">
-                        <div class="traffic-header">
-                            <span class="material-symbols-outlined">globe</span> Sources
-                        </div>
-                        <div class="traffic-item">
-                            <span class="label">Direct</span>
-                            <span class="value count" data-target="421">0</span>
-                        </div>
+                        <div class="traffic-header"><span class="material-symbols-outlined">globe</span> Sources</div>
+                        <div class="traffic-item"><span class="label">Direct</span> <span class="value count" data-target="421">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="80"></div></div>
-                        <div class="traffic-item">
-                            <span class="label">Bing</span>
-                            <span class="value count" data-target="124">0</span>
-                        </div>
+                        <div class="traffic-item"><span class="label">Bing</span> <span class="value count" data-target="124">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="60"></div></div>
-                        <div class="traffic-item">
-                            <span class="label">Gemini</span>
-                            <span class="value count" data-target="53">0</span>
-                        </div>
+                        <div class="traffic-item"><span class="label">Gemini</span> <span class="value count" data-target="53">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="40"></div></div>
-                        <div class="traffic-item">
-                            <span class="label">ChatGPT</span>
-                            <span class="value count" data-target="32">0</span>
-                        </div>
+                        <div class="traffic-item"><span class="label">ChatGPT</span> <span class="value count" data-target="32">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="30"></div></div>
                     </div>
-
                     <!-- Locations Card -->
                     <div class="traffic-card">
-                        <div class="traffic-header">
-                            <span class="material-symbols-outlined">location_on</span> Locations
-                        </div>
-                        <div style="display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between;">
-                            <div style="flex: 1; min-width: 120px;">
+                        <div class="traffic-header"><span class="material-symbols-outlined">location_on</span> Locations</div>
+                        <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+                            <div style="flex:1">
                                 <div class="traffic-item"><span class="label">🇫🇷 France</span> <span class="value count" data-target="568">0</span></div>
                                 <div class="traffic-item"><span class="label">🇮🇹 Italy</span> <span class="value count" data-target="140">0</span></div>
                                 <div class="traffic-item"><span class="label">🇪🇸 Spain</span> <span class="value count" data-target="35">0</span></div>
                             </div>
-                            <div style="flex: 1; min-width: 120px;">
+                            <div style="flex:1">
                                 <div class="traffic-item"><span class="label">🇩🇪 Germany</span> <span class="value count" data-target="1">0</span></div>
                                 <div class="traffic-item"><span class="label">🇨🇳 China</span> <span class="value count" data-target="1">0</span></div>
                                 <div class="traffic-item"><span class="label">🇿🇦 South Africa</span> <span class="value count" data-target="1">0</span></div>
                             </div>
                         </div>
-                        <!-- World map dots -->
-                        <div style="margin-top: 20px; display: flex; gap: 4px; flex-wrap: wrap; justify-content: center;">
-                            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.8;"></div>
-                            <div style="width: 12px; height: 12px; border-radius: 50%; background: var(--accent); opacity: 0.6;"></div>
-                            <div style="width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.9;"></div>
-                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); opacity: 0.4;"></div>
-                            <div style="width: 14px; height: 14px; border-radius: 50%; background: var(--accent); opacity: 0.7;"></div>
-                            <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent); opacity: 0.5;"></div>
-                            <div style="width: 10px; height: 10px; border-radius: 50%; background: var(--accent); opacity: 0.8;"></div>
-                        </div>
                     </div>
-
                     <!-- Devices Card -->
                     <div class="traffic-card">
-                        <div class="traffic-header">
-                            <span class="material-symbols-outlined">devices</span> Devices
-                        </div>
-                        <div class="traffic-item">
-                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">desktop_windows</span> Chrome</span>
-                            <span class="value count" data-target="568">0</span>
-                        </div>
+                        <div class="traffic-header"><span class="material-symbols-outlined">devices</span> Devices</div>
+                        <div class="traffic-item"><span class="label">Chrome</span> <span class="value count" data-target="568">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="85"></div></div>
-                        <div class="traffic-item">
-                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">phone_iphone</span> Safari Mobile</span>
-                            <span class="value count" data-target="140">0</span>
-                        </div>
+                        <div class="traffic-item"><span class="label">Safari Mobile</span> <span class="value count" data-target="140">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="60"></div></div>
-                        <div class="traffic-item">
-                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">laptop</span> Firefox</span>
-                            <span class="value count" data-target="35">0</span>
-                        </div>
+                        <div class="traffic-item"><span class="label">Firefox</span> <span class="value count" data-target="35">0</span></div>
                         <div class="traffic-bar"><div class="traffic-bar-fill" data-width="30"></div></div>
-                        <div class="traffic-item">
-                            <span class="label"><span class="material-symbols-outlined" style="font-size: 16px;">devices</span> Brave</span>
-                            <span class="value count" data-target="4">0</span>
-                        </div>
-                        <div class="traffic-bar"><div class="traffic-bar-fill" data-width="10"></div></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- What's Driving Purchases? (Customer Journey) -->
-        <section class="features" style="background: var(--bg-primary);">
+        <!-- SALES BY LOCATION & PRODUCT (Taap.it replica) -->
+        <section class="sales-section">
             <div class="container">
                 <div class="section-header">
                     <h2># What's driving purchases?</h2>
-                    <p>See the exact customer journey from first touch to final sale.</p>
+                    <p>See which locations and products generate real revenue.</p>
                 </div>
-                <div class="journey-mockup">
-                    <div style="display: flex; flex-direction: column; gap: 12px;">
-                        <!-- Step 1 -->
-                        <div class="journey-step">
-                            <div class="step-number">1</div>
-                            <div class="step-content">
-                                <div class="step-title">Instagram Story Click</div>
-                                <div class="step-subtitle">from @beautycreator · 12:34pm</div>
+                <div class="sales-grid">
+                    <!-- Sales by Location -->
+                    <div class="sales-card">
+                        <h3 style="margin-bottom: 20px;">Sales by location</h3>
+                        <div class="comparison-row">
+                            <span class="comparison-label">France</span>
+                            <div class="comparison-values">
+                                <span class="prev-value">$25.0k</span>
+                                <span class="current-value count" data-target="32000">$0</span>
                             </div>
-                            <div class="step-value count" data-target="1245">0</div>
                         </div>
-                        <div class="arrow-down">↓</div>
-                        <!-- Step 2 -->
-                        <div class="journey-step">
-                            <div class="step-number">2</div>
-                            <div class="step-content">
-                                <div class="step-title">Product Page View</div>
-                                <div class="step-subtitle">Premium Headphones · 12:35pm</div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Italy</span>
+                            <div class="comparison-values">
+                                <span class="prev-value">$20.0k</span>
+                                <span class="current-value count" data-target="28000">$0</span>
                             </div>
-                            <div class="step-value count" data-target="876">0</div>
                         </div>
-                        <div class="arrow-down">↓</div>
-                        <!-- Step 3 -->
-                        <div class="journey-step">
-                            <div class="step-number">3</div>
-                            <div class="step-content">
-                                <div class="step-title">Added to Cart</div>
-                                <div class="step-subtitle">Quantity: 1 · 12:38pm</div>
+                        <div class="comparison-row">
+                            <span class="comparison-label">Spain</span>
+                            <div class="comparison-values">
+                                <span class="prev-value">$15.0k</span>
+                                <span class="current-value count" data-target="24000">$0</span>
                             </div>
-                            <div class="step-value count" data-target="543">0</div>
                         </div>
-                        <div class="arrow-down">↓</div>
-                        <!-- Step 4 (Purchase) -->
-                        <div class="journey-step highlight">
-                            <div class="step-number highlight">$</div>
-                            <div class="step-content">
-                                <div class="step-title">Purchase Completed</div>
-                                <div class="step-subtitle">Revenue: $89.00 · 12:45pm</div>
-                            </div>
-                            <div class="step-value count" data-target="8900">$0</div>
-                        </div>
+                    </div>
+                    <!-- Sales by Product -->
+                    <div class="sales-card">
+                        <h3 style="margin-bottom: 20px;">Your best sellers</h3>
+                        <table class="product-table">
+                            <thead><tr><th>Product</th><th>Units</th><th>Revenue</th><th>Trend</th></tr></thead>
+                            <tbody>
+                                <tr><td>Premium Headphones</td><td>123/234</td><td>$12.0k/$23.0k</td><td class="trend-up">+0.5%</td></tr>
+                                <tr><td>Smart Watch Pro</td><td>112/223</td><td>$11.0k/$22.0k</td><td class="trend-up">+0.6%</td></tr>
+                                <tr><td>Bluetooth Speaker</td><td>101/212</td><td>$10.0k/$21.0k</td><td class="trend-up">+0.7%</td></tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- How Lumétria Solves It (Features) -->
-        <section class="features" style="background: var(--bg-secondary);">
+        <!-- USER EXPERIENCE SCORE (Taap.it replica) -->
+        <section class="ux-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2># What experience do visitors really have?</h2>
+                    <p>Go beyond numbers to understand how people experience your site.</p>
+                </div>
+                <div class="ux-score-card">
+                    <div class="ux-score-number count" data-target="56">0</div>
+                    <div class="ux-score-label">Good</div>
+                    <div class="ux-score-description">Your visitors have a smooth experience. Still room to improve.</div>
+                    <div class="ux-meter">
+                        <div class="ux-meter-indicator" style="left: 56%;"></div>
+                    </div>
+                    <div class="ux-stats">
+                        <div class="ux-stat-item"><span class="ux-stat-value count" data-target="367">0</span><span class="ux-stat-label">ms INP</span></div>
+                        <div class="ux-stat-item"><span class="ux-stat-value count" data-target="128">0</span><span class="ux-stat-label">ms P75</span></div>
+                        <div class="ux-stat-item"><span class="ux-stat-value count" data-target="263">0</span><span class="ux-stat-label">ms FCP</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMPETITOR COMPARISON (inspired by XTablo) -->
+        <section class="competitor-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Lumétria beats spreadsheets and basic analytics</h2>
+                    <p>Stop piecing together data from multiple tools. Get one complete picture.</p>
+                </div>
+                <div class="comparison-grid">
+                    <div class="comparison-col against">
+                        <h3><span class="material-symbols-outlined against-icon">close</span> Without Lumétria</h3>
+                        <ul class="comparison-list">
+                            <li><span class="material-symbols-outlined against-icon">close</span> 5+ tools (UTMs, GA, Shopify, Sheets)</li>
+                            <li><span class="material-symbols-outlined against-icon">close</span> Lost data, broken tracking links</li>
+                            <li><span class="material-symbols-outlined against-icon">close</span> "Which folder was that report in?"</li>
+                            <li><span class="material-symbols-outlined against-icon">close</span> Hundreds in subscription costs</li>
+                            <li><span class="material-symbols-outlined against-icon">close</span> Amateur: shared spreadsheets with errors</li>
+                            <li><span class="material-symbols-outlined against-icon">close</span> 10+ hours/week lost in manual work</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-col for">
+                        <h3><span class="material-symbols-outlined for-icon">check</span> With Lumétria</h3>
+                        <ul class="comparison-list">
+                            <li><span class="material-symbols-outlined for-icon">check</span> One unified platform. All data connected.</li>
+                            <li><span class="material-symbols-outlined for-icon">check</span> Automatic tracking. No UTMs needed.</li>
+                            <li><span class="material-symbols-outlined for-icon">check</span> Every project has its own clean dashboard.</li>
+                            <li><span class="material-symbols-outlined for-icon">check</span> Single subscription. Immediate savings.</li>
+                            <li><span class="material-symbols-outlined for-icon">check</span> Premium experience. Professional reports.</li>
+                            <li><span class="material-symbols-outlined for-icon">check</span> 5-minute setup. Instant ROI clarity.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW LUMÉTRIA SOLVES IT (Features) -->
+        <section class="features">
             <div class="container">
                 <div class="section-header">
                     <h2>How Lumétria Solves It</h2>
@@ -1215,7 +794,7 @@
             </div>
         </section>
 
-        <!-- Stats / Proof -->
+        <!-- STATS / PROOF -->
         <section class="stats">
             <div class="container">
                 <div class="stats-grid">
@@ -1227,7 +806,7 @@
             </div>
         </section>
 
-        <!-- Pricing -->
+        <!-- PRICING (Taap.it style) -->
         <section class="pricing" id="pricing">
             <div class="container">
                 <div class="section-header">
@@ -1249,7 +828,7 @@
             </div>
         </section>
 
-        <!-- FAQ Accordion -->
+        <!-- FAQ ACCORDION -->
         <section class="faq">
             <div class="container">
                 <div class="section-header">
@@ -1262,33 +841,27 @@
                             <h3>How does Lumétria track UGC creators?</h3>
                             <span class="material-symbols-outlined">add</span>
                         </div>
-                        <div class="faq-answer">
-                            Lumétria uses advanced AI to automatically map creator content to Shopify orders without UTMs or manual tagging.
-                        </div>
+                        <div class="faq-answer">Lumétria uses advanced AI to automatically map creator content to Shopify orders without UTMs or manual tagging.</div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
                             <h3>What platforms does it integrate with?</h3>
                             <span class="material-symbols-outlined">add</span>
                         </div>
-                        <div class="faq-answer">
-                            We integrate natively with Shopify, Instagram, TikTok, and YouTube. More platforms coming soon.
-                        </div>
+                        <div class="faq-answer">We integrate natively with Shopify, Instagram, TikTok, and YouTube. More platforms coming soon.</div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
                             <h3>Is there a free trial?</h3>
                             <span class="material-symbols-outlined">add</span>
                         </div>
-                        <div class="faq-answer">
-                            Yes! You can start with a 14-day free trial. No credit card required.
-                        </div>
+                        <div class="faq-answer">Yes! You can start with a 14-day free trial. No credit card required.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA with Calendly -->
+        <!-- FINAL CTA with Calendly -->
         <section class="cta" id="calendly">
             <div class="container">
                 <div class="cta-grid">
@@ -1317,7 +890,7 @@
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -1381,7 +954,7 @@
             icon.textContent = answer.classList.contains('show') ? 'remove' : 'add';
         }
 
-        // Close mobile menu when clicking outside
+        // Close mobile menu
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
             const menuBtn = document.querySelector('.mobile-menu-btn');
@@ -1390,7 +963,7 @@
             }
         });
 
-        // GSAP Scroll Animations with counters and bars
+        // GSAP Scroll Animations
         gsap.registerPlugin(ScrollTrigger);
 
         // Animate counters
@@ -1403,10 +976,7 @@
                     innerText: target,
                     duration: 2,
                     ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: counter,
-                        start: 'top 80%',
-                    },
+                    scrollTrigger: { trigger: counter, start: 'top 80%' },
                     modifiers: {
                         innerText: (value) => {
                             if (counter.innerText.includes('$')) {
@@ -1427,15 +997,12 @@
                 width: width + '%',
                 duration: 1.5,
                 ease: "power2.out",
-                scrollTrigger: {
-                    trigger: bar,
-                    start: 'top 80%',
-                }
+                scrollTrigger: { trigger: bar, start: 'top 80%' }
             });
         });
 
         // Fade up animations for cards
-        gsap.utils.toArray('.pain-card, .traffic-card, .feature-card, .stat-card, .pricing-card, .faq-item, .journey-step').forEach(el => {
+        gsap.utils.toArray('.pain-card, .traffic-card, .sales-card, .feature-card, .stat-card, .pricing-card, .faq-item, .ux-score-card, .comparison-col').forEach(el => {
             gsap.from(el, {
                 scrollTrigger: { trigger: el, start: 'top 85%' },
                 y: 30,
