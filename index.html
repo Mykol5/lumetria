@@ -651,6 +651,147 @@
         .ux-stat-status.good { color: var(--warning); }
         .ux-stat-status.excellent { color: var(--success); }
 
+        /* User Trends Section (from image.png) */
+        .trends-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+        }
+
+        .trends-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .trends-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .trends-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .trends-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .trends-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .metric-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .metric-value {
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .metric-change {
+            color: var(--success);
+            font-size: 14px;
+        }
+
+        .trends-chart {
+            height: 200px;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            margin: 32px 0 24px;
+        }
+
+        .chart-bar {
+            flex: 1;
+            background: var(--accent-light);
+            border-radius: 4px 4px 0 0;
+            position: relative;
+            transition: height 1.5s ease;
+        }
+
+        .chart-bar-fill {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(180deg, var(--accent), var(--accent-light));
+            border-radius: 4px 4px 0 0;
+            opacity: 0.8;
+        }
+
+        .trends-comparison {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            color: var(--text-tertiary);
+            font-size: 13px;
+        }
+
+        .identified-users {
+            margin-top: 32px;
+        }
+
+        .quick-preview {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .preview-badge {
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .millionaires {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .order-card {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-date {
+            font-size: 13px;
+            color: var(--text-tertiary);
+        }
+
+        .order-count {
+            font-weight: 700;
+        }
+
+        .comparison-highlight {
+            margin-top: 16px;
+            padding: 12px;
+            background: var(--accent-soft);
+            border-radius: 8px;
+            font-size: 13px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
         /* How It Works Section */
         .how-it-works {
             padding: 80px 0;
@@ -714,10 +855,39 @@
             line-height: 1.6;
         }
 
-        /* FAQ Section */
+        /* FAQ Section (expanded from taapit8.png) */
         .faq-section {
             padding: 80px 0;
             background: var(--bg-primary);
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .faq-header h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .faq-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        .faq-contact {
+            text-align: center;
+            margin: 32px 0 48px;
+            font-size: 15px;
+            color: var(--text-secondary);
+        }
+
+        .faq-contact a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
         }
 
         .faq-grid {
@@ -759,6 +929,66 @@
         .faq-answer.show {
             max-height: 200px;
             padding-bottom: 20px;
+        }
+
+        /* AI Reassurance Section (from taapit9.png) */
+        .ai-section {
+            padding: 60px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .ai-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .ai-content h2 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .ai-content p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+        }
+
+        .ai-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+
+        .ai-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 100px;
+            padding: 12px 24px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ai-btn:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .ai-btn.selected {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
         }
 
         /* CTA Section */
@@ -867,7 +1097,8 @@
             }
             .traffic-grid,
             .features-grid,
-            .footer-grid {
+            .footer-grid,
+            .trends-grid {
                 grid-template-columns: 1fr 1fr;
             }
             .ux-grid {
@@ -884,8 +1115,11 @@
             .conversion-grid,
             .stats-cards,
             .features-grid,
-            .footer-grid {
+            .footer-grid,
+            .trends-grid,
+            .ai-buttons {
                 grid-template-columns: 1fr;
+                flex-direction: column;
             }
             .hero-buttons {
                 flex-direction: column;
@@ -1280,6 +1514,145 @@
             </div>
         </section>
 
+        <!-- User Trends Section (from image.png) -->
+        <section class="trends-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>User Trends Over Time</h2>
+                    <p>Track how traffic, behavior and conversions evolve over time.</p>
+                </div>
+
+                <div class="trends-grid">
+                    <!-- Left Column - Behavior & Quality -->
+                    <div class="trends-card">
+                        <div class="trends-header">
+                            <span class="material-symbols-outlined" style="color: var(--accent);">insights</span>
+                            <h3>Customer Behavior & Quality</h3>
+                        </div>
+                        
+                        <div class="trends-metric">
+                            <span class="metric-label">Time to conversion</span>
+                            <span class="metric-value">12h</span>
+                            <span class="metric-change">-15%</span>
+                        </div>
+                        
+                        <div class="trends-metric">
+                            <span class="metric-label">Customer Lifetime Value</span>
+                            <span class="metric-value">$<span class="count" data-target="8900">0</span></span>
+                            <span class="metric-change">+32.4%</span>
+                        </div>
+                        
+                        <div class="trends-chart">
+                            <div class="chart-bar" style="height: 60%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <div class="chart-bar" style="height: 45%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <div class="chart-bar" style="height: 75%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <div class="chart-bar" style="height: 30%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <div class="chart-bar" style="height: 85%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <div class="chart-bar" style="height: 50%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                            <div class="chart-bar" style="height: 70%;">
+                                <div class="chart-bar-fill"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="trends-comparison">
+                            <span>750 visitors</span>
+                            <span>2.8% conversion rate</span>
+                        </div>
+                    </div>
+
+                    <!-- Right Column - Identified Users -->
+                    <div class="trends-card">
+                        <div class="trends-header">
+                            <span class="material-symbols-outlined" style="color: var(--accent);">group</span>
+                            <h3>Identified Users</h3>
+                        </div>
+                        <p style="color: var(--text-secondary); margin-bottom: 24px;">
+                            Identify logged-in users and customers to understand how they interact with your site over time.
+                        </p>
+                        
+                        <div class="quick-preview">
+                            <span class="preview-badge">Quick Preview</span>
+                            <span class="material-symbols-outlined" style="color: var(--accent);">trending_up</span>
+                        </div>
+                        
+                        <div class="millionaires">
+                            Millionaires
+                        </div>
+                        
+                        <div class="order-card">
+                            <div>
+                                <div class="order-date">Sunday, Dec 7</div>
+                                <div class="order-count">89 orders</div>
+                            </div>
+                            <span class="order-count">$<span class="count" data-target="8900">0</span></span>
+                        </div>
+                        
+                        <div class="comparison-highlight">
+                            A 134% difference between the two sites.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Events & Funnel -->
+                <div class="trends-card" style="margin-top: 32px;">
+                    <div class="trends-header">
+                        <span class="material-symbols-outlined" style="color: var(--accent);">funnel</span>
+                        <h3>Custom Events & Funnel View</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin: 24px 0;">
+                        <div style="text-align: center;">
+                            <div style="font-weight: 700; margin-bottom: 4px;">5.2K</div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">click_cta</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: 700; margin-bottom: 4px;">3.8K</div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">signup</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: 700; margin-bottom: 4px;">3.4K</div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">view_product</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: 700; margin-bottom: 4px;">2.4K</div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">add_to_cart</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-weight: 700; margin-bottom: 4px;">1.8K</div>
+                            <div style="font-size: 12px; color: var(--text-tertiary);">purchase</div>
+                        </div>
+                    </div>
+                    <div style="background: var(--bg-secondary); border-radius: 8px; padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 16px;">
+                            <span class="visitor-avatar" style="width: 32px; height: 32px;">👤</span>
+                            <div>
+                                <div style="font-weight: 600;">Hey Visitor</div>
+                                <div style="font-size: 12px; color: var(--text-tertiary);">Diopside Schist,</div>
+                            </div>
+                            <div style="margin-left: auto; display: flex; align-items: center; gap: 8px;">
+                                <span class="visitor-tag">Direct</span>
+                                <span style="color: var(--accent); font-size: 13px;">See on your site →</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; font-size: 13px; color: var(--text-tertiary);">
+                            We already know how you got here
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- How It Works Section -->
         <section class="how-it-works">
             <div class="container">
@@ -1354,40 +1727,112 @@
             </div>
         </section>
 
-        <!-- FAQ Section -->
+        <!-- FAQ Section (expanded from taapit8.png) -->
         <section class="faq-section">
             <div class="container">
-                <div class="section-header">
-                    <h2>Frequently Asked Questions</h2>
-                    <p>Everything you need to know about Lumétria</p>
+                <div class="faq-header">
+                    <h2>FAQ</h2>
+                    <p>Any more questions? We have the answers.</p>
                 </div>
 
                 <div class="faq-grid">
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            <h3>How does tracking work?</h3>
+                            <h3>Is Lumétria just another analytics tool to learn?</h3>
                             <span class="material-symbols-outlined">add</span>
                         </div>
                         <div class="faq-answer">
-                            Lumétria uses a lightweight script that collects browsing data anonymously and in compliance with GDPR.
+                            No. Lumétria is designed to be understood in minutes. You don't need to be an analyst or configure complex reports.
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            <h3>Is it compatible with my tech stack?</h3>
+                            <h3>How quickly can I get value from Lumétria?</h3>
                             <span class="material-symbols-outlined">add</span>
                         </div>
                         <div class="faq-answer">
-                            Yes, Lumétria works with any website, CMS or framework. A simple script to integrate is all you need.
+                            Almost immediately. As soon as Lumétria is installed, you start seeing how traffic, behavior and revenue connect.
                         </div>
                     </div>
                     <div class="faq-item">
                         <div class="faq-question" onclick="toggleFAQ(this)">
-                            <h3>What's the difference with Google Analytics?</h3>
+                            <h3>Do I need to replace my existing tools?</h3>
                             <span class="material-symbols-outlined">add</span>
                         </div>
                         <div class="faq-answer">
-                            Lumétria goes further by directly connecting traffic to conversions and revenue, with a more intuitive interface.
+                            No. Lumétria works with the tools you already use.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Is Lumétria complicated to set up?</h3>
+                            <span class="material-symbols-outlined">add</span>
+                        </div>
+                        <div class="faq-answer">
+                            Setup takes just a few minutes. Once installed, Lumétria works in the background and stays simple to use every day.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Is Lumétria GDPR compliant?</h3>
+                            <span class="material-symbols-outlined">add</span>
+                        </div>
+                        <div class="faq-answer">
+                            Yes. Lumétria is fully GDPR compliant.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Do I need cookie banners to use Lumétria?</h3>
+                            <span class="material-symbols-outlined">add</span>
+                        </div>
+                        <div class="faq-answer">
+                            No. Lumétria works without cookie banners. It doesn't rely on invasive tracking or third-party cookies.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-contact">
+                    Didn't find what you were looking for? <a href="#">Contact us</a>
+                </div>
+
+                <div style="text-align: center;">
+                    <button class="btn-primary">Request Demo →</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Reassurance Section (from taapit9.png) -->
+        <section class="ai-section">
+            <div class="container">
+                <div class="ai-content">
+                    <h2>Still not sure Lumétria is right for you?</h2>
+                    <p>Let ChatGPT, Claude or Perplexity do the thinking for you. Click a button and see what your favorite AI says about Lumétria.</p>
+                    
+                    <div class="ai-buttons">
+                        <button class="ai-btn" onclick="selectAI(this, 'chatgpt')">
+                            <span>🤖</span> Ask ChatGPT
+                        </button>
+                        <button class="ai-btn" onclick="selectAI(this, 'claude')">
+                            <span>🧠</span> Ask Claude
+                        </button>
+                        <button class="ai-btn" onclick="selectAI(this, 'perplexity')">
+                            <span>🔍</span> Ask Perplexity
+                        </button>
+                    </div>
+
+                    <div class="visitor-card" style="max-width: 500px; margin: 0 auto;">
+                        <div class="visitor-row">
+                            <div class="visitor-avatar">👤</div>
+                            <div class="visitor-info">
+                                <div class="visitor-name">Hey Visitor</div>
+                                <div class="visitor-stats">
+                                    We already know how you got here!
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 8px; margin-top: 12px;">
+                                    <span class="visitor-tag">Direct</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1471,6 +1916,19 @@
             icon.textContent = answer.classList.contains('show') ? 'remove' : 'add';
         }
 
+        // AI Button Selection
+        function selectAI(button, ai) {
+            // Remove selected class from all buttons
+            document.querySelectorAll('.ai-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            // Add selected class to clicked button
+            button.classList.add('selected');
+            
+            // In a real implementation, this would trigger the AI query
+            console.log(`Selected ${ai}`);
+        }
+
         // Close mobile menu when clicking outside
         document.addEventListener('click', function(event) {
             const menu = document.getElementById('mobileMenu');
@@ -1500,6 +1958,9 @@
                     },
                     modifiers: {
                         innerText: (value) => {
+                            if (counter.innerText.includes('$')) {
+                                return Math.round(Number(value)).toLocaleString();
+                            }
                             return Math.round(Number(value)).toLocaleString();
                         }
                     }
@@ -1520,6 +1981,37 @@
                     trigger: bar,
                     start: 'top 80%',
                 }
+            });
+        });
+
+        // Animate chart bars
+        gsap.utils.toArray('.chart-bar').forEach((bar, index) => {
+            const height = bar.style.height;
+            gsap.fromTo(bar, 
+                { height: '0%' },
+                {
+                    height: height,
+                    duration: 1.2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: bar,
+                        start: 'top 85%',
+                    }
+                }
+            );
+        });
+
+        // Animate cards on scroll
+        gsap.utils.toArray('.trends-card, .feature-card, .stat-card, .ux-stat').forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 85%',
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                ease: 'power2.out'
             });
         });
     </script>
