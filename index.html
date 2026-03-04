@@ -125,9 +125,13 @@
         .logo img {
             height: 32px;
             width: auto;
+            /* Make logo dark/black in light mode */
+            filter: brightness(0) invert(0); /* Black/dark in light mode */
         }
+        
+        /* In dark mode, make logo white */
         body.dark .logo img {
-            filter: brightness(0) invert(1);
+            filter: brightness(0) invert(1); /* White in dark mode */
         }
 
         .nav-links {
@@ -1042,7 +1046,10 @@
             height: 28px;
             width: auto;
             margin-bottom: 16px;
+            /* Match logo styling in footer */
+            filter: brightness(0) invert(0);
         }
+        
         body.dark .footer-logo img {
             filter: brightness(0) invert(1);
         }
