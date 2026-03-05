@@ -238,7 +238,7 @@
         }
 
         .hero h1 {
-            font-size: 64px;
+            font-size: clamp(40px, 8vw, 64px);
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.1;
@@ -263,7 +263,7 @@
         }
 
         .hero-subtitle {
-            font-size: 20px;
+            font-size: 18px;
             color: var(--text-secondary);
             max-width: 600px;
             margin: 0 auto 32px;
@@ -277,10 +277,12 @@
             justify-content: center;
             gap: 32px;
             margin-bottom: 40px;
+            flex-wrap: wrap;
         }
 
         .hero-stat {
             text-align: center;
+            min-width: 120px;
         }
 
         .hero-stat-value {
@@ -302,6 +304,13 @@
             gap: 16px;
             justify-content: center;
             margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 14px 32px;
+            font-size: 15px;
+            white-space: nowrap;
         }
 
         .btn-primary {
@@ -309,8 +318,6 @@
             color: white;
             border: none;
             border-radius: 100px;
-            padding: 16px 40px;
-            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -328,8 +335,6 @@
             color: var(--text-primary);
             border: 1px solid var(--border-color);
             border-radius: 100px;
-            padding: 16px 40px;
-            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -345,6 +350,7 @@
             align-items: center;
             justify-content: center;
             gap: 16px;
+            flex-wrap: wrap;
         }
 
         .trust-avatars {
@@ -392,7 +398,7 @@
         }
 
         .section-header h2 {
-            font-size: 40px;
+            font-size: clamp(32px, 6vw, 40px);
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.2;
@@ -400,7 +406,7 @@
         }
 
         .section-header p {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--text-secondary);
             line-height: 1.6;
         }
@@ -418,38 +424,33 @@
 
         /* Problem Section */
         .problem-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-secondary);
         }
 
         .problem-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            gap: 40px;
             align-items: center;
         }
 
         .problem-stats {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 24px;
+            gap: 20px;
         }
 
         .problem-stat-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
-            padding: 24px;
+            padding: 20px;
             transition: all 0.3s ease;
         }
 
-        .problem-stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
-        }
-
         .problem-stat-value {
-            font-size: 40px;
+            font-size: 36px;
             font-weight: 800;
             color: var(--accent);
             line-height: 1;
@@ -457,7 +458,7 @@
         }
 
         .problem-stat-label {
-            font-size: 14px;
+            font-size: 13px;
             color: var(--text-secondary);
         }
 
@@ -468,15 +469,16 @@
 
         .problem-list li {
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             gap: 12px;
             margin-bottom: 16px;
-            font-size: 16px;
+            font-size: 15px;
         }
 
         .problem-list .material-symbols-outlined {
             color: var(--error);
             font-size: 20px;
+            flex-shrink: 0;
         }
 
         /* Features Grid */
@@ -491,14 +493,20 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 32px;
+            padding: 28px;
             transition: all 0.3s ease;
         }
 
-        .feature-card-large:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0,102,255,0.1);
+        .feature-card-large h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .feature-card-large p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .feature-icon-large {
@@ -513,18 +521,6 @@
             margin-bottom: 24px;
         }
 
-        .feature-card-large h3 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .feature-card-large p {
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.6;
-        }
-
         .feature-accuracy {
             display: inline-block;
             background: var(--success);
@@ -537,7 +533,7 @@
 
         /* Scoring Dimensions */
         .dimensions-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-primary);
         }
 
@@ -552,20 +548,15 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 20px;
-            padding: 32px;
-            transition: all 0.3s ease;
-        }
-
-        .dimension-card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
+            padding: 28px;
         }
 
         .dimension-header {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
         }
 
         .dimension-icon {
@@ -577,6 +568,7 @@
             align-items: center;
             justify-content: center;
             color: var(--accent);
+            flex-shrink: 0;
         }
 
         .dimension-title {
@@ -585,7 +577,6 @@
         }
 
         .dimension-range {
-            display: inline-block;
             background: var(--bg-secondary);
             color: var(--text-tertiary);
             font-size: 12px;
@@ -596,7 +587,7 @@
 
         .dimension-description {
             color: var(--text-secondary);
-            margin-bottom: 24px;
+            margin-bottom: 20px;
             line-height: 1.6;
         }
 
@@ -610,7 +601,7 @@
 
         /* DCO Agents */
         .agents-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-secondary);
         }
 
@@ -626,13 +617,6 @@
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 24px;
-            transition: all 0.3s ease;
-        }
-
-        .agent-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent);
-            box-shadow: 0 12px 24px rgba(0,102,255,0.1);
         }
 
         .agent-icon {
@@ -661,14 +645,14 @@
 
         /* Shopify Section */
         .shopify-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-primary);
         }
 
         .shopify-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            gap: 40px;
             align-items: center;
         }
 
@@ -676,7 +660,7 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 32px;
+            padding: 28px;
         }
 
         .shopify-stat-item {
@@ -685,6 +669,8 @@
             align-items: center;
             padding: 16px 0;
             border-bottom: 1px solid var(--border-color);
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         .shopify-stat-item:last-child {
@@ -728,12 +714,12 @@
         }
 
         .guarantee-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .guarantee-content h2 {
-            font-size: 48px;
+            font-size: clamp(36px, 6vw, 48px);
             font-weight: 800;
             letter-spacing: -0.02em;
             margin-bottom: 24px;
@@ -759,7 +745,7 @@
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
-            margin-top: 48px;
+            margin-top: 40px;
         }
 
         .guarantee-card {
@@ -769,9 +755,27 @@
             backdrop-filter: blur(10px);
         }
 
+        .guarantee-card .material-symbols-outlined {
+            font-size: 36px;
+            margin-bottom: 16px;
+            color: white;
+        }
+
+        .guarantee-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .guarantee-card p {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 0;
+        }
+
         /* Pricing Section */
         .pricing-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-secondary);
         }
 
@@ -786,20 +790,14 @@
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 32px;
+            padding: 28px;
             position: relative;
             transition: all 0.3s ease;
         }
 
-        .pricing-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0,102,255,0.2);
-        }
-
         .pricing-card.popular {
             border: 2px solid var(--accent);
-            transform: scale(1.05);
+            transform: scale(1.02);
             z-index: 2;
         }
 
@@ -824,7 +822,7 @@
         }
 
         .pricing-price {
-            font-size: 36px;
+            font-size: 32px;
             font-weight: 800;
             color: var(--text-primary);
             margin-bottom: 8px;
@@ -858,9 +856,10 @@
         .pricing-features .material-symbols-outlined {
             color: var(--success);
             font-size: 18px;
+            flex-shrink: 0;
         }
 
-        .pricing-features .disabled {
+        .pricing-features .disabled .material-symbols-outlined {
             color: var(--text-tertiary);
         }
 
@@ -877,11 +876,6 @@
             transition: all 0.3s ease;
         }
 
-        .pricing-btn:hover {
-            background: #0052cc;
-            transform: translateY(-2px);
-        }
-
         .pricing-btn.outline {
             background: transparent;
             border: 1px solid var(--border-color);
@@ -894,22 +888,22 @@
 
         /* Case Study */
         .case-study {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-primary);
         }
 
         .case-study-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
-            align-items: center;
+            gap: 40px;
+            align-items: start;
         }
 
         .case-study-results {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 32px;
+            padding: 28px;
         }
 
         .result-item {
@@ -918,6 +912,8 @@
             align-items: center;
             padding: 16px 0;
             border-bottom: 1px solid var(--border-color);
+            gap: 16px;
+            flex-wrap: wrap;
         }
 
         .result-item:last-child {
@@ -942,7 +938,7 @@
         .testimonial {
             background: var(--bg-secondary);
             border-radius: 20px;
-            padding: 32px;
+            padding: 28px;
             margin-top: 32px;
             font-style: italic;
             line-height: 1.6;
@@ -974,7 +970,7 @@
 
         /* FAQ Section */
         .faq-section {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--bg-primary);
         }
 
@@ -984,7 +980,7 @@
         }
 
         .faq-header h2 {
-            font-size: 36px;
+            font-size: clamp(32px, 6vw, 36px);
             font-weight: 800;
             margin-bottom: 16px;
         }
@@ -1014,11 +1010,6 @@
 
         .faq-item {
             border-bottom: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            border-bottom-color: var(--accent);
         }
 
         .faq-question {
@@ -1032,16 +1023,13 @@
         .faq-question h3 {
             font-size: 16px;
             font-weight: 600;
+            padding-right: 16px;
         }
 
         .faq-question span {
             color: var(--text-tertiary);
             transition: transform 0.3s;
-        }
-
-        .faq-question:hover span {
-            color: var(--accent);
-            transform: scale(1.2);
+            flex-shrink: 0;
         }
 
         .faq-answer {
@@ -1060,7 +1048,7 @@
 
         /* Calendly CTA */
         .calendly-cta {
-            padding: 80px 0;
+            padding: 60px 0;
             background: var(--cta-bg);
             color: var(--cta-text);
         }
@@ -1068,12 +1056,12 @@
         .calendly-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 48px;
+            gap: 40px;
             align-items: center;
         }
 
         .calendly-content h2 {
-            font-size: 40px;
+            font-size: clamp(32px, 5vw, 40px);
             font-weight: 800;
             letter-spacing: -0.02em;
             line-height: 1.2;
@@ -1103,6 +1091,7 @@
         .benefit-item .material-symbols-outlined {
             color: var(--accent);
             font-size: 20px;
+            flex-shrink: 0;
         }
 
         .calendly-wrapper {
@@ -1116,7 +1105,7 @@
 
         @keyframes float {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-8px); }
             100% { transform: translateY(0px); }
         }
 
@@ -1134,8 +1123,8 @@
         }
 
         .calendly-inline-widget {
-            min-width: 320px;
-            height: 600px;
+            min-width: 280px;
+            height: 550px;
             border-radius: 16px;
             overflow: hidden;
         }
@@ -1157,7 +1146,7 @@
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 48px;
+            gap: 40px;
         }
 
         .footer-logo img {
@@ -1214,20 +1203,46 @@
             color: var(--text-tertiary);
         }
 
-        /* Responsive */
+        /* Responsive Breakpoints */
         @media (max-width: 1024px) {
+            .features-grid,
+            .agents-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 32px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 16px;
+            }
             .nav-links, .nav-buttons {
                 display: none;
             }
             .mobile-menu-btn {
                 display: block;
             }
-            .features-grid,
-            .agents-grid,
-            .pricing-grid,
-            .dimensions-grid {
-                grid-template-columns: 1fr 1fr;
+
+            .hero {
+                padding: 140px 0 60px;
             }
+            .hero h1 {
+                font-size: 40px;
+            }
+            .hero-stats {
+                gap: 16px;
+            }
+            .hero-stat {
+                min-width: 100px;
+            }
+            .hero-stat-value {
+                font-size: 24px;
+            }
+
             .problem-grid,
             .shopify-grid,
             .case-study-grid,
@@ -1235,24 +1250,56 @@
                 grid-template-columns: 1fr;
                 gap: 32px;
             }
-        }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 40px;
-            }
             .features-grid,
+            .dimensions-grid,
             .agents-grid,
             .pricing-grid,
-            .dimensions-grid,
-            .guarantee-grid {
+            .guarantee-grid,
+            .footer-grid {
                 grid-template-columns: 1fr;
             }
-            .hero-stats {
-                flex-direction: column;
-                gap: 16px;
+
+            .dimension-header {
+                flex-wrap: wrap;
             }
+
+            .pricing-card.popular {
+                transform: scale(1);
+            }
+
+            .calendly-inline-widget {
+                height: 500px;
+            }
+
+            .footer-grid {
+                gap: 24px;
+            }
+
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
             .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+            .hero-stat {
+                min-width: 80px;
+            }
+            .hero-stat-value {
+                font-size: 20px;
+            }
+            .hero-stat-label {
+                font-size: 10px;
+            }
+            .trust {
                 flex-direction: column;
             }
         }
@@ -1770,19 +1817,19 @@
                     
                     <div class="guarantee-grid">
                         <div class="guarantee-card">
-                            <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 16px; color: white;">savings</span>
-                            <h4 style="margin-bottom: 8px;">Budget Saved</h4>
-                            <p style="font-size: 14px; opacity: 0.9;">Prevent spending on creatives that would have flopped</p>
+                            <span class="material-symbols-outlined">savings</span>
+                            <h4>Budget Saved</h4>
+                            <p>Prevent spending on creatives that would have flopped</p>
                         </div>
                         <div class="guarantee-card">
-                            <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 16px; color: white;">trending_up</span>
-                            <h4 style="margin-bottom: 8px;">Improved ROAS</h4>
-                            <p style="font-size: 14px; opacity: 0.9;">Only launch creatives scored 7+/10</p>
+                            <span class="material-symbols-outlined">trending_up</span>
+                            <h4>Improved ROAS</h4>
+                            <p>Only launch creatives scored 7+/10</p>
                         </div>
                         <div class="guarantee-card">
-                            <span class="material-symbols-outlined" style="font-size: 32px; margin-bottom: 16px; color: white;">schedule</span>
-                            <h4 style="margin-bottom: 8px;">Time Saved</h4>
-                            <p style="font-size: 14px; opacity: 0.9;">DCO agents do the work of a junior media buyer</p>
+                            <span class="material-symbols-outlined">schedule</span>
+                            <h4>Time Saved</h4>
+                            <p>DCO agents do the work of a junior media buyer</p>
                         </div>
                     </div>
                 </div>
@@ -2033,7 +2080,7 @@
                     <div class="calendly-wrapper">
                         <div class="calendly-inline-widget" 
                              data-url="https://calendly.com/lumetria-demo/30min?primary_color=0066FF"
-                             style="min-width:320px; height:600px;">
+                             style="min-width:280px; height:600px;">
                         </div>
                         <p class="calendly-note">
                             Free strategy call · No commitment · 15 minutes
@@ -2201,18 +2248,16 @@
             ease: 'power2.out'
         });
 
-        // Parallax effect
-        gsap.utils.toArray('.hero::before').forEach(el => {
-            gsap.to(el, {
-                scrollTrigger: {
-                    trigger: 'body',
-                    start: 'top top',
-                    end: 'bottom top',
-                    scrub: 1
-                },
-                y: 200,
-                ease: 'none'
-            });
+        // Parallax effect for hero background
+        gsap.to('.hero::before', {
+            scrollTrigger: {
+                trigger: 'body',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 1
+            },
+            y: 200,
+            ease: 'none'
         });
 
         // Pulsing animation for Calendly widget
