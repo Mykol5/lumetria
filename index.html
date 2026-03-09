@@ -449,6 +449,11 @@
             transition: all 0.3s ease;
         }
 
+        .problem-stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+
         .problem-stat-value {
             font-size: 36px;
             font-weight: 800;
@@ -481,7 +486,7 @@
             flex-shrink: 0;
         }
 
-        /* Features Grid */
+        /* Features Grid Base */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -495,6 +500,12 @@
             border-radius: 24px;
             padding: 28px;
             transition: all 0.3s ease;
+        }
+
+        .feature-card-large:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,102,255,0.1);
         }
 
         .feature-card-large h3 {
@@ -529,6 +540,525 @@
             font-size: 14px;
             padding: 4px 12px;
             border-radius: 100px;
+        }
+
+        /* Enhanced Predictor Section Styles */
+        .predictor-showcase {
+            margin: 60px 0;
+        }
+
+        .predictor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .predictor-step {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 24px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .predictor-step:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,102,255,0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            background: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+            box-shadow: 0 4px 12px rgba(0,102,255,0.3);
+        }
+
+        .step-content {
+            margin-bottom: 20px;
+            padding-top: 10px;
+        }
+
+        .step-content h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Video Mockup */
+        .video-mockup {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 16px;
+        }
+
+        .mockup-player {
+            background: var(--bg-primary);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .mockup-controls {
+            background: #1a1a1a;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mockup-play {
+            width: 24px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .mockup-play::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 55%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 0;
+            border-left: 6px solid white;
+            border-top: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+        }
+
+        .mockup-timeline {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 2px;
+            position: relative;
+        }
+
+        .mockup-timeline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 45%;
+            height: 100%;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .mockup-frame {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mockup-video-preview {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+        }
+
+        .mockup-video-preview .material-symbols-outlined {
+            font-size: 48px;
+        }
+
+        .mockup-metadata {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            margin-top: 12px;
+        }
+
+        .metadata-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .metadata-item .material-symbols-outlined {
+            font-size: 14px;
+            color: var(--success);
+        }
+
+        /* Analysis Mockup */
+        .analysis-mockup {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            padding: 20px;
+        }
+
+        .dimensions-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .dimension-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .dimension-label {
+            width: 100px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .bar-container {
+            flex: 1;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #00C8B0);
+            border-radius: 4px;
+            transition: width 1.5s ease;
+        }
+
+        .dimension-score {
+            width: 45px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .analysis-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--accent-light);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 16px;
+        }
+
+        /* Score Mockup */
+        .score-mockup {
+            background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+            border-radius: 16px;
+            padding: 24px;
+            position: relative;
+        }
+
+        .score-circle {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 16px;
+        }
+
+        .score-chart {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .score-bg {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 8;
+        }
+
+        .score-fill {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 251.2;
+            transition: stroke-dashoffset 1.5s ease;
+        }
+
+        .score-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .score-max {
+            font-size: 14px;
+            font-weight: 400;
+            color: var(--text-tertiary);
+        }
+
+        .score-details {
+            margin-top: 16px;
+        }
+
+        .score-prediction {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .prediction-label {
+            color: var(--text-secondary);
+        }
+
+        .prediction-value {
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .score-confidence {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .confidence-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .confidence-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .confidence-value {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .score-recommendation {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--warning);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 12px;
+        }
+
+        .score-recommendation .material-symbols-outlined {
+            font-size: 16px;
+        }
+
+        .accuracy-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--success);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(16,185,129,0.3);
+        }
+
+        /* Feature Card Enhancements */
+        .video-thumbnails {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .thumbnail {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            font-size: 13px;
+        }
+
+        .thumbnail .material-symbols-outlined {
+            color: var(--accent);
+            font-size: 18px;
+        }
+
+        .analysis-indicators {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+        }
+
+        .indicator span:first-child {
+            width: 60px;
+            color: var(--text-secondary);
+        }
+
+        .indicator-bar {
+            flex: 1;
+            height: 6px;
+            background: var(--border-color);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .indicator-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #00C8B0);
+            border-radius: 3px;
+        }
+
+        .score-display {
+            background: linear-gradient(135deg, var(--accent-light), var(--bg-primary));
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .score-main {
+            margin-bottom: 8px;
+        }
+
+        .score-big {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .score-total {
+            font-size: 18px;
+            color: var(--text-tertiary);
+        }
+
+        .score-meta {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            font-size: 12px;
+        }
+
+        .score-accuracy {
+            background: var(--success);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 100px;
+        }
+
+        .score-roas {
+            color: var(--text-secondary);
+        }
+
+        /* Video Gallery */
+        .video-gallery {
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .video-gallery h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .gallery-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .gallery-thumbnail {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-light);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        .gallery-info {
+            flex: 1;
+        }
+
+        .gallery-title {
+            display: block;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .gallery-score {
+            display: block;
+            font-size: 12px;
+            color: var(--text-secondary);
         }
 
         /* Scoring Dimensions */
@@ -1207,7 +1737,9 @@
         @media (max-width: 1024px) {
             .features-grid,
             .agents-grid,
-            .pricing-grid {
+            .pricing-grid,
+            .predictor-grid,
+            .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
             .footer-grid {
@@ -1246,13 +1778,15 @@
             .problem-grid,
             .shopify-grid,
             .case-study-grid,
-            .calendly-grid {
+            .calendly-grid,
+            .dimensions-grid,
+            .predictor-grid,
+            .gallery-grid {
                 grid-template-columns: 1fr;
                 gap: 32px;
             }
 
             .features-grid,
-            .dimensions-grid,
             .agents-grid,
             .pricing-grid,
             .guarantee-grid,
@@ -1491,38 +2025,284 @@
             </div>
         </section>
 
-        <!-- ROAS Predictor Feature -->
+        <!-- ROAS Predictor Feature - Enhanced Version -->
         <section class="features-section" id="features">
             <div class="container">
                 <div class="section-header">
-                    <span class="section-badge">Fonction Phare</span>
+                    <span class="section-badge">⚡ Fonction Phare</span>
                     <h2>Le Prédicteur de ROAS</h2>
-                    <p>78% de précision — prédisez la performance avant de dépenser un seul euro</p>
+                    <p class="section-subtitle">78% de précision — prédisez la performance avant de dépenser un seul euro</p>
                 </div>
 
+                <!-- Process Steps with Visual Mockups -->
+                <div class="predictor-showcase">
+                    <div class="predictor-grid">
+                        <!-- Step 1: Upload -->
+                        <div class="predictor-step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Import</h3>
+                                <p>Importez votre vidéo UGC directement sur la plateforme Lumétria. Formats supportés : MP4, MOV, AVI.</p>
+                            </div>
+                            <div class="video-mockup">
+                                <div class="mockup-player">
+                                    <div class="mockup-controls">
+                                        <span class="mockup-play"></span>
+                                        <div class="mockup-timeline"></div>
+                                    </div>
+                                    <div class="mockup-frame">
+                                        <div class="mockup-video-preview">
+                                            <span class="material-symbols-outlined">smart_display</span>
+                                            <span>UGC_video_example.mp4</span>
+                                        </div>
+                                    </div>
+                                    <div class="mockup-metadata">
+                                        <div class="metadata-item">
+                                            <span class="material-symbols-outlined">check_circle</span>
+                                            <span>Format: MP4</span>
+                                        </div>
+                                        <div class="metadata-item">
+                                            <span class="material-symbols-outlined">check_circle</span>
+                                            <span>Durée: 32s</span>
+                                        </div>
+                                        <div class="metadata-item">
+                                            <span class="material-symbols-outlined">check_circle</span>
+                                            <span>9:16 optimisé</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: AI Analysis with 6 Dimensions Visualization -->
+                        <div class="predictor-step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Analyse IA</h3>
+                                <p>Notre IA analyse la vidéo selon 6 dimensions clés de performance.</p>
+                            </div>
+                            <div class="analysis-mockup">
+                                <div class="dimensions-visual">
+                                    <div class="dimension-bar">
+                                        <span class="dimension-label">Accroche</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 92%"></div>
+                                        </div>
+                                        <span class="dimension-score">9.2/10</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <span class="dimension-label">Émotion</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 85%"></div>
+                                        </div>
+                                        <span class="dimension-score">8.5/10</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <span class="dimension-label">Rythme</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 78%"></div>
+                                        </div>
+                                        <span class="dimension-score">7.8/10</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <span class="dimension-label">CTA</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 65%"></div>
+                                        </div>
+                                        <span class="dimension-score">6.5/10</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <span class="dimension-label">Qualité visuelle</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 88%"></div>
+                                        </div>
+                                        <span class="dimension-score">8.8/10</span>
+                                    </div>
+                                    <div class="dimension-bar">
+                                        <span class="dimension-label">Narration</span>
+                                        <div class="bar-container">
+                                            <div class="bar-fill" style="width: 82%"></div>
+                                        </div>
+                                        <span class="dimension-score">8.2/10</span>
+                                    </div>
+                                </div>
+                                <div class="analysis-badge">
+                                    <span class="material-symbols-outlined">auto_awesome</span>
+                                    Analyse en temps réel
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: ROAS Score with Visual Result -->
+                        <div class="predictor-step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Score ROAS</h3>
+                                <p>Lumétria génère un score ROAS prédit sur 10, accompagné d'un rapport détaillé.</p>
+                            </div>
+                            <div class="score-mockup">
+                                <div class="score-circle">
+                                    <svg viewBox="0 0 100 100" class="score-chart">
+                                        <circle cx="50" cy="50" r="40" class="score-bg"/>
+                                        <circle cx="50" cy="50" r="40" class="score-fill" 
+                                                style="stroke-dasharray: 251.2; stroke-dashoffset: 50.24;"/>
+                                    </svg>
+                                    <div class="score-value">8.4<span class="score-max">/10</span></div>
+                                </div>
+                                <div class="score-details">
+                                    <div class="score-prediction">
+                                        <span class="prediction-label">ROAS prédit:</span>
+                                        <span class="prediction-value">4.2x - 5.8x</span>
+                                    </div>
+                                    <div class="score-confidence">
+                                        <span class="confidence-label">Confiance:</span>
+                                        <div class="confidence-bar">
+                                            <div class="confidence-fill" style="width: 78%"></div>
+                                        </div>
+                                        <span class="confidence-value">78%</span>
+                                    </div>
+                                    <div class="score-recommendation">
+                                        <span class="material-symbols-outlined">tip</span>
+                                        <span>CTA à renforcer pour améliorer le score</span>
+                                    </div>
+                                </div>
+                                <div class="accuracy-badge">78% précision</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature Cards with Enhanced Visuals -->
                 <div class="features-grid">
+                    <!-- Upload Card with Video Thumbnail -->
                     <div class="feature-card-large">
                         <div class="feature-icon-large">
                             <span class="material-symbols-outlined">upload</span>
                         </div>
-                        <h3>1. Import</h3>
+                        <h3>1. Import vidéo</h3>
                         <p>Importez votre vidéo UGC directement sur la plateforme Lumétria. Formats supportés : MP4, MOV, AVI.</p>
+                        <div class="video-thumbnails">
+                            <div class="thumbnail">
+                                <span class="material-symbols-outlined">play_circle</span>
+                                <span>ugc_1.mp4</span>
+                            </div>
+                            <div class="thumbnail">
+                                <span class="material-symbols-outlined">play_circle</span>
+                                <span>ugc_2.mov</span>
+                            </div>
+                            <div class="thumbnail">
+                                <span class="material-symbols-outlined">play_circle</span>
+                                <span>ugc_3.mp4</span>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Analysis Card with Visual Indicators -->
                     <div class="feature-card-large">
                         <div class="feature-icon-large">
                             <span class="material-symbols-outlined">analytics</span>
                         </div>
                         <h3>2. Analyse IA</h3>
                         <p>Notre IA analyse la vidéo selon 6 dimensions clés de performance.</p>
+                        <div class="analysis-indicators">
+                            <div class="indicator">
+                                <span>Accroche</span>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" style="width: 92%"></div>
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <span>Émotion</span>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <span>Rythme</span>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <span>CTA</span>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <span>Qualité</span>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="indicator">
+                                <span>Narration</span>
+                                <div class="indicator-bar">
+                                    <div class="indicator-fill" style="width: 82%"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Score Card with Visual Result -->
                     <div class="feature-card-large">
                         <div class="feature-icon-large">
                             <span class="material-symbols-outlined">score</span>
                         </div>
                         <h3>3. Score ROAS</h3>
                         <p>Lumétria génère un score ROAS prédit sur 10, accompagné d'un rapport détaillé.</p>
-                        <div style="margin-top: 16px;">
-                            <span class="feature-accuracy">78% de précision</span>
+                        <div class="score-display">
+                            <div class="score-main">
+                                <span class="score-big">8.4</span>
+                                <span class="score-total">/10</span>
+                            </div>
+                            <div class="score-meta">
+                                <span class="score-accuracy">78% précision</span>
+                                <span class="score-roas">ROAS prédit: 4.2x - 5.8x</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Examples Gallery -->
+                <div class="video-gallery">
+                    <h3>Exemples de vidéos analysées</h3>
+                    <div class="gallery-grid">
+                        <div class="gallery-item">
+                            <div class="gallery-thumbnail">
+                                <span class="material-symbols-outlined">smart_display</span>
+                            </div>
+                            <div class="gallery-info">
+                                <span class="gallery-title">Beauty UGC #1</span>
+                                <span class="gallery-score">Score: 8.9/10</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-thumbnail">
+                                <span class="material-symbols-outlined">smart_display</span>
+                            </div>
+                            <div class="gallery-info">
+                                <span class="gallery-title">Fashion UGC #2</span>
+                                <span class="gallery-score">Score: 7.4/10</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-thumbnail">
+                                <span class="material-symbols-outlined">smart_display</span>
+                            </div>
+                            <div class="gallery-info">
+                                <span class="gallery-title">Lifestyle UGC #3</span>
+                                <span class="gallery-score">Score: 8.2/10</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div class="gallery-thumbnail">
+                                <span class="material-symbols-outlined">smart_display</span>
+                            </div>
+                            <div class="gallery-info">
+                                <span class="gallery-title">Tech UGC #4</span>
+                                <span class="gallery-score">Score: 6.8/10</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2232,6 +3012,22 @@
                 opacity: 0,
                 duration: 0.8,
                 ease: 'power2.out'
+            });
+        });
+
+        // Animate progress bars
+        gsap.utils.toArray('.bar-fill, .indicator-fill, .confidence-fill').forEach(bar => {
+            const width = bar.style.width;
+            if (!width) return;
+            
+            gsap.to(bar, {
+                width: width,
+                duration: 1.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: bar,
+                    start: 'top 80%',
+                }
             });
         });
 
