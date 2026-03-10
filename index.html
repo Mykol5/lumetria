@@ -463,12 +463,12 @@
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 177.78%; /* 9:16 aspect ratio */
+            padding-bottom: 56.25%; /* 16:9 aspect ratio for dashboard videos */
             background: linear-gradient(135deg, var(--accent-light), var(--accent-soft));
             overflow: hidden;
         }
 
-        .video-container video {
+        .video-container video, .video-container img {
             position: absolute;
             top: 0;
             left: 0;
@@ -819,7 +819,7 @@
             padding: 0;
         }
 
-        .mockup-frame video {
+        .mockup-frame video, .mockup-frame img {
             width: 100%;
             height: auto;
             display: block;
@@ -1060,6 +1060,13 @@
             background: var(--bg-secondary);
             border-radius: 8px;
             font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .thumbnail:hover {
+            background: var(--accent-light);
+            transform: translateX(4px);
         }
 
         .thumbnail .material-symbols-outlined {
@@ -1171,22 +1178,30 @@
             align-items: center;
             gap: 12px;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .gallery-item:hover {
             transform: translateY(-4px);
             border-color: var(--accent);
+            box-shadow: 0 10px 20px rgba(0,102,255,0.1);
         }
 
         .gallery-thumbnail {
             width: 48px;
             height: 48px;
-            background: var(--accent-light);
             border-radius: 8px;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--accent);
+        }
+
+        .gallery-thumbnail video, .gallery-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .gallery-info {
@@ -2155,7 +2170,7 @@
             </div>
         </section>
 
-        <!-- Problem Section with Video Showcase -->
+        <!-- Problem Section with Dashboard Videos -->
         <section class="problem-section">
             <div class="container">
                 <div class="problem-grid">
@@ -2206,44 +2221,44 @@
                     </div>
                 </div>
 
-                <!-- Video Showcase in Problem Section -->
+                <!-- Dashboard Videos Showcase -->
                 <div class="video-showcase">
                     <div class="video-grid">
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-talking-about-skincare-products-40385-large.mp4" type="video/mp4">
+                                <video autoplay muted loop playsinline poster="videos/dashboard1-poster.jpg">
+                                    <source src="videos/dashboard1.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <div class="video-stats">
-                                        <span class="video-score">Score: 4.2/10</span>
-                                        <span>CTA faible</span>
+                                        <span class="video-score">ROAS: 4.2x</span>
+                                        <span>Campagne sous-performante</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-showing-makeup-products-40386-large.mp4" type="video/mp4">
+                                <video autoplay muted loop playsinline poster="videos/dashboard2-poster.jpg">
+                                    <source src="videos/dashboard2.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <div class="video-stats">
-                                        <span class="video-score">Score: 8.7/10</span>
-                                        <span>⚡ Performant</span>
+                                        <span class="video-score">ROAS: 8.7x</span>
+                                        <span>⚡ Campagne performante</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-beauty-blogger-talking-to-the-camera-40384-large.mp4" type="video/mp4">
+                                <video autoplay muted loop playsinline poster="videos/dashboard3-poster.jpg">
+                                    <source src="videos/dashboard3.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <div class="video-stats">
-                                        <span class="video-score">Score: 6.1/10</span>
-                                        <span>Accroche à améliorer</span>
+                                        <span class="video-score">ROAS: 6.1x</span>
+                                        <span>Optimisation nécessaire</span>
                                     </div>
                                 </div>
                             </div>
@@ -2262,13 +2277,13 @@
                     <p class="section-subtitle">78% de précision — prédisez la performance avant de dépenser un seul euro</p>
                 </div>
 
-                <!-- Video Analysis Demo -->
+                <!-- Dashboard Analysis Demo -->
                 <div class="video-showcase">
                     <div class="video-grid">
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-doing-makeup-tutorial-40387-large.mp4" type="video/mp4">
+                                <video autoplay muted loop playsinline poster="videos/dashboard4-poster.jpg">
+                                    <source src="videos/dashboard4.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <div class="analysis-overlay">
@@ -2290,9 +2305,7 @@
                         </div>
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-young-woman-talking-to-the-camera-40390-large.mp4" type="video/mp4">
-                                </video>
+                                <img src="images/animation.gif" alt="Animation d'analyse IA" style="width:100%; height:100%; object-fit:cover;">
                                 <div class="video-overlay">
                                     <div class="analysis-overlay">
                                         <div class="analysis-dimension">
@@ -2313,8 +2326,8 @@
                         </div>
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-showing-a-product-to-the-camera-40388-large.mp4" type="video/mp4">
+                                <video autoplay muted loop playsinline poster="videos/dashboard1-poster.jpg">
+                                    <source src="videos/dashboard1.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <div class="score-badge">8.4/10</div>
@@ -2342,7 +2355,7 @@
                                     </div>
                                     <div class="mockup-frame">
                                         <video autoplay muted loop playsinline>
-                                            <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-talking-about-skincare-products-40385-large.mp4" type="video/mp4">
+                                            <source src="videos/dashboard2.mp4" type="video/mp4">
                                         </video>
                                     </div>
                                     <div class="mockup-metadata">
@@ -2470,17 +2483,17 @@
                         <h3>1. Import vidéo</h3>
                         <p>Importez votre vidéo UGC directement sur la plateforme Lumétria. Formats supportés : MP4, MOV, AVI.</p>
                         <div class="video-thumbnails">
-                            <div class="thumbnail">
+                            <div class="thumbnail" onclick="playVideo('videos/dashboard1.mp4')">
                                 <span class="material-symbols-outlined">play_circle</span>
-                                <span>ugc_beauty.mp4</span>
+                                <span>campagne_beauty.mp4</span>
                             </div>
-                            <div class="thumbnail">
+                            <div class="thumbnail" onclick="playVideo('videos/dashboard2.mp4')">
                                 <span class="material-symbols-outlined">play_circle</span>
-                                <span>ugc_fashion.mov</span>
+                                <span>campagne_fashion.mp4</span>
                             </div>
-                            <div class="thumbnail">
+                            <div class="thumbnail" onclick="playVideo('videos/dashboard3.mp4')">
                                 <span class="material-symbols-outlined">play_circle</span>
-                                <span>ugc_lifestyle.mp4</span>
+                                <span>campagne_lifestyle.mp4</span>
                             </div>
                         </div>
                     </div>
@@ -2550,43 +2563,51 @@
                     </div>
                 </div>
 
-                <!-- Video Gallery -->
+                <!-- Dashboard Gallery -->
                 <div class="video-gallery">
-                    <h3>Exemples de vidéos analysées</h3>
+                    <h3>Exemples de tableaux de bord analysés</h3>
                     <div class="gallery-grid">
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="playVideo('videos/dashboard1.mp4')">
                             <div class="gallery-thumbnail">
-                                <span class="material-symbols-outlined">smart_display</span>
+                                <video muted loop>
+                                    <source src="videos/dashboard1.mp4" type="video/mp4">
+                                </video>
                             </div>
                             <div class="gallery-info">
-                                <span class="gallery-title">Beauty UGC #1</span>
+                                <span class="gallery-title">Campagne Beauty</span>
                                 <span class="gallery-score">Score: 8.9/10</span>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="playVideo('videos/dashboard2.mp4')">
                             <div class="gallery-thumbnail">
-                                <span class="material-symbols-outlined">smart_display</span>
+                                <video muted loop>
+                                    <source src="videos/dashboard2.mp4" type="video/mp4">
+                                </video>
                             </div>
                             <div class="gallery-info">
-                                <span class="gallery-title">Fashion UGC #2</span>
+                                <span class="gallery-title">Campagne Fashion</span>
                                 <span class="gallery-score">Score: 7.4/10</span>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="playVideo('videos/dashboard3.mp4')">
                             <div class="gallery-thumbnail">
-                                <span class="material-symbols-outlined">smart_display</span>
+                                <video muted loop>
+                                    <source src="videos/dashboard3.mp4" type="video/mp4">
+                                </video>
                             </div>
                             <div class="gallery-info">
-                                <span class="gallery-title">Lifestyle UGC #3</span>
+                                <span class="gallery-title">Campagne Lifestyle</span>
                                 <span class="gallery-score">Score: 8.2/10</span>
                             </div>
                         </div>
-                        <div class="gallery-item">
+                        <div class="gallery-item" onclick="playVideo('videos/dashboard4.mp4')">
                             <div class="gallery-thumbnail">
-                                <span class="material-symbols-outlined">smart_display</span>
+                                <video muted loop>
+                                    <source src="videos/dashboard4.mp4" type="video/mp4">
+                                </video>
                             </div>
                             <div class="gallery-info">
-                                <span class="gallery-title">Tech UGC #4</span>
+                                <span class="gallery-title">Campagne Tech</span>
                                 <span class="gallery-score">Score: 6.8/10</span>
                             </div>
                         </div>
@@ -2711,9 +2732,7 @@
                     <div class="video-grid">
                         <div class="video-card">
                             <div class="video-container">
-                                <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-showing-makeup-products-40386-large.mp4" type="video/mp4">
-                                </video>
+                                <img src="images/animation.gif" alt="Animation de génération UGC">
                                 <div class="video-overlay">
                                     <span class="video-score">Génération IA</span>
                                 </div>
@@ -2722,7 +2741,7 @@
                         <div class="video-card">
                             <div class="video-container">
                                 <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-beauty-blogger-talking-to-the-camera-40384-large.mp4" type="video/mp4">
+                                    <source src="videos/dashboard2.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <span class="video-score">Régénération</span>
@@ -2732,7 +2751,7 @@
                         <div class="video-card">
                             <div class="video-container">
                                 <video autoplay muted loop playsinline>
-                                    <source src="https://assets.mixkit.co/videos/preview/mixkit-woman-talking-about-skincare-products-40385-large.mp4" type="video/mp4">
+                                    <source src="videos/dashboard3.mp4" type="video/mp4">
                                 </video>
                                 <div class="video-overlay">
                                     <span class="video-score">Variations A/B</span>
@@ -3284,6 +3303,38 @@
             const icon = element.querySelector('span');
             answer.classList.toggle('show');
             icon.textContent = answer.classList.contains('show') ? 'remove' : 'add';
+        }
+
+        // Video Play Function
+        function playVideo(videoPath) {
+            // Create a modal or lightbox to play video
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '0';
+            modal.style.left = '0';
+            modal.style.width = '100%';
+            modal.style.height = '100%';
+            modal.style.backgroundColor = 'rgba(0,0,0,0.9)';
+            modal.style.zIndex = '10000';
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.cursor = 'pointer';
+            
+            const video = document.createElement('video');
+            video.src = videoPath;
+            video.controls = true;
+            video.autoplay = true;
+            video.style.maxWidth = '90%';
+            video.style.maxHeight = '90%';
+            video.style.borderRadius = '12px';
+            
+            modal.appendChild(video);
+            document.body.appendChild(modal);
+            
+            modal.onclick = function() {
+                document.body.removeChild(modal);
+            };
         }
 
         // Close mobile menu when clicking outside
